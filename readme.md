@@ -1,5 +1,5 @@
 
-# Simplified Search Engine
+# Simplified Search Engine: Simply do it. 
 
 ## Project Description
 
