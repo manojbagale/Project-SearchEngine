@@ -1,5 +1,6 @@
 
-# Simplified Search Engine: Simply do it. 
+# SimpliSearch: Simply do it. 
+![SimpliSearch](https://github.com/user-attachments/assets/9596f261-fad4-4f81-9c1c-aa6ad927753d)
 
 ## Project Description
 
