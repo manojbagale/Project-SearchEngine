@@ -7,13 +7,13 @@ A search engine takes a given search phrase or word and finds pages on the inter
 
 For this project, we’ll build a simplified search engine that returns articles in no particular order from searching one word, a keyword. Each search will have two parts:
 
-### Basic Search
+### 1. Basic Search
 
 To run a basic search, ask the user for a keyword and use the keyword to search through the complete list of articles (from wiki.article_titles()), and return the list of articles that contain the keyword. The search should not be case-sensitive (ie if a user enters “Dog”, the resulting list should return all titles with “Dog”, “dog”, "dOG", etc.). If the user does not enter anything or no results are found, return an empty list.
 
 When running a search, the basic search will always be run, and it will always be run before the advanced search.
 
-### Advanced Search
+### 2. Advanced Search
 
 The user is then prompted for different options to perform an advanced search. There will be 6 advanced search options:
 
