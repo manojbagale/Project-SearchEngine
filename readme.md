@@ -28,3 +28,15 @@ The user is then prompted for different options to perform an advanced search. T
 5. **Multiple keywords** - user provides another keyword to search. After searching for article titles with the user’s basic search keyword, search all of the articles again using this second keyword. Return a combined list of all articles from both search results, with the new search results coming after the initial results from the basic search.
 
 6. **None** - user does not want an advanced search.
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/simplified-search-engine.git
+   cd simplified-search-engine
+
+2. **Set up the environment:**
+   Ensure you have Python 3.8 or higher installed on your machine. Install the required dependencies using pip.
+   
