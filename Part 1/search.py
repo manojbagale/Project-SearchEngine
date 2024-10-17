@@ -29,7 +29,11 @@ def search(keyword):
 # Returns: list of article titles from given titles with a length that does
 # not exceed max_length number of characters 
 def title_length(max_length, titles):
-    pass
+    result = []
+    for title in titles:
+        if len(title) <= max_length:
+            result.append(title)
+    return result
 
 # 3) 
 #
