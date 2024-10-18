@@ -11,9 +11,10 @@ from wiki import article_titles, ask_search, ask_advanced_search
 # If the keyword is empty or no results are found, return an empty list.
 #
 # Hint: to get list of existing article titles, use article_titles()
-def search(keyword):
-    #Trying how commit works
-    pass
+def search():
+    print(article_titles)
+
+search()
 
 # 2) 
 #
