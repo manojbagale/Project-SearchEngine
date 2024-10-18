@@ -12,9 +12,13 @@ from wiki import article_titles, ask_search, ask_advanced_search
 #
 # Hint: to get list of existing article titles, use article_titles()
 def search(keyword):
-    # Trying how commit works
-    # Take two in trying how this is working
-    pass
+    keyword=keyword.upper()
+    titles, out = article_titles(), []
+    temp=titles
+    for i in range(len(titles)):
+        if keyword in titles[i].upper():
+            out.append(temp[i])
+    return out
 
 # 2) 
 #
@@ -61,7 +65,10 @@ def article_count(count, titles):
 # Returns: article title in given titles at given index. If
 # index is not valid, return an empty string
 def random_article(index, titles):
-    pass
+    if index>=0 and index<len(titles):
+        return titles[index]
+    else:
+        return ''
 
 # 5) 
 #
