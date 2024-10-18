@@ -11,6 +11,7 @@ from wiki import article_titles, ask_search, ask_advanced_search, article_info
 # If the keyword is empty or no results are found, return an empty list.
 #
 # Hint: to get list of existing article titles, use article_titles()
+
 def search(keyword):
     contains_keyword, article_titles_lst = [], article_titles()
     if keyword:
@@ -22,7 +23,7 @@ def search(keyword):
         return []
 
 # print(article_titles())
-print(search("music"))
+# print(search("music"))
 
 # 2) 
 #
@@ -54,7 +55,7 @@ def title_length(max_length, titles):
 
 def article_count(count, titles):
     if not titles:
-        return []
+        return [] 
     if count > len(titles):
         return titles
     else:
@@ -85,11 +86,7 @@ def random_article(index, titles):
 # Returns: True if favorite article is in the given articles
 # (case insensitive) and False otherwise
 def favorite_article(favorite, titles):
-    fovorite = fovorite.lower() #Changes the favorite title into lower case
-    lowercase_titles = [title.lower() for title in titles] #Changes the entire list of titles into lowercase
-    if fovorite in lowercase_titles:
-        return True
-    return False
+    pass
 
 # 6) 
 #
@@ -102,51 +99,51 @@ def favorite_article(favorite, titles):
 # Returns: searches for article titles from entire list of available
 # articles and adds those articles to list of article titles from basic 
 # search
+
 def multiple_keywords(keyword, titles):
-    pass
+    titles_extended = search(keyword) #uses the same first function to find the titles with the specific keyword
+    return titles.extend(titles_extended) #extends the already existing list of titles with this advanced search.
+        
 
+# Prints out articles based on searched keyword and advanced options
+def display_result():
+    # Stores list of articles returned from searching user's keyword
+    articles = search(ask_search())
 
+    # advanced stores user's chosen advanced option (1-5)
+    # value stores user's response in being asked the advanced option
+    advanced, value = ask_advanced_search()
 
+    if advanced == 1:
+        # value stores max article title length in number of characters
+        # Update article titles to contain only ones of the maximum length
+        articles = title_length(value, articles)
+    if advanced == 2:
+        # value stores max number of articles
+        # Update article titles to contain only the max number of articles
+        articles = article_count(value, articles)
+    elif advanced == 3:
+        # value stores random number
+        # Update articles to only contain the article title at index of the random number
+        articles = random_article(value, articles)
+    elif advanced == 4:
+        # value stores article title
+        # Store whether article title is in the search results into a variable named has_favorite
+        has_favorite = favorite_article(value, articles)
+    elif advanced == 5:
+        # value stores keyword to search
+        # Updated article titles to contain article titles from the first search and the second search
+        articles = multiple_keywords(value, articles)
 
-# # Prints out articles based on searched keyword and advanced options
-# def display_result():
-#     # Stores list of articles returned from searching user's keyword
-#     articles = search(ask_search())
+    print()
 
-#     # advanced stores user's chosen advanced option (1-5)
-#     # value stores user's response in being asked the advanced option
-#     advanced, value = ask_advanced_search()
+    if not articles:
+        print("No articles found")
+    else:
+        print("Here are your articles: " + str(articles))
 
-#     if advanced == 1:
-#         # value stores max article title length in number of characters
-#         # Update article titles to contain only ones of the maximum length
-#         articles = title_length(value, articles)
-#     if advanced == 2:
-#         # value stores max number of articles
-#         # Update article titles to contain only the max number of articles
-#         articles = article_count(value, articles)
-#     elif advanced == 3:
-#         # value stores random number
-#         # Update articles to only contain the article title at index of the random number
-#         articles = random_article(value, articles)
-#     elif advanced == 4:
-#         # value stores article title
-#         # Store whether article title is in the search results into a variable named has_favorite
-#         has_favorite = favorite_article(value, articles)
-#     elif advanced == 5:
-#         # value stores keyword to search
-#         # Updated article titles to contain article titles from the first search and the second search
-#         articles = multiple_keywords(value, articles)
+    if advanced == 4:
+        print("Your favorite article is" + ("" if has_favorite else " not") + " in the returned articles!")
 
-#     print()
-
-#     if not articles:
-#         print("No articles found")
-#     else:
-#         print("Here are your articles: " + str(articles))
-
-#     if advanced == 4:
-#         print("Your favorite article is" + ("" if has_favorite else " not") + " in the returned articles!")
-
-# if __name__ == "__main__":
-#     display_result()
+if __name__ == "__main__":
+    display_result()
