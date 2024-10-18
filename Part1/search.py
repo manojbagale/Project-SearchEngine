@@ -11,10 +11,10 @@ from wiki import article_titles, ask_search, ask_advanced_search
 # If the keyword is empty or no results are found, return an empty list.
 #
 # Hint: to get list of existing article titles, use article_titles()
-def search():
-    print(article_titles)
-
-search()
+def search(keyword):
+    # Trying how commit works
+    # Take two in trying how this is working
+    pass
 
 # 2) 
 #
@@ -29,7 +29,11 @@ search()
 # Returns: list of article titles from given titles with a length that does
 # not exceed max_length number of characters 
 def title_length(max_length, titles):
-    pass
+    result = []
+    for title in titles:
+        if len(title) <= max_length:
+            result.append(title)
+    return result
 
 # 3) 
 #
@@ -70,7 +74,12 @@ def random_article(index, titles):
 # Returns: True if favorite article is in the given articles
 # (case insensitive) and False otherwise
 def favorite_article(favorite, titles):
-    pass
+    fovorite = fovorite.lower() #Changes the favorite title into lower case
+    lowercase_titles = [title.lower() for title in titles] #Changes the entire list of titles into lowercase
+    if fovorite in lowercase_titles:
+        return True
+    return False
+
 
 # 6) 
 #

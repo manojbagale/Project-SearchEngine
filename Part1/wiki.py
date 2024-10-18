@@ -1,4 +1,5 @@
-from json import find_keywords
+import json
+# from json import find_keywords
 import re
 import requests
 
@@ -774,9 +775,11 @@ def article_titles():
   return list(map(lambda article: article.get('title'), _ARTICLES))
 
 def article_info():
+  
   """ Returns a list of article metadata (list of lists)
   """
   return list(map(lambda article: list(article.values()), _ARTICLES))
+
 
 def _count_for_titles():
   """ Returns titles that have words in other titles

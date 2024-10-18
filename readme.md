@@ -1,6 +1,5 @@
 
-# SimpliSearch: Simply do it. 
-![SimpliSearch](https://github.com/user-attachments/assets/9596f261-fad4-4f81-9c1c-aa6ad927753d)
+![SimpliSearch](https://github.com/user-attachments/assets/1a5b11f5-feb3-4209-8dea-d84d264a9f26)
 
 ## Project Description
 
