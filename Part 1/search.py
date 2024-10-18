@@ -12,7 +12,7 @@ from wiki import article_titles, ask_search, ask_advanced_search
 #
 # Hint: to get list of existing article titles, use article_titles()
 def search(keyword):
-    #Trying how commit works
+    
     pass
 
 # 2) 
