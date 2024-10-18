@@ -32,7 +32,6 @@ def search(keyword):
 #     else:
 #         return []
 
-
 # 2) 
 #
 # Function: title_length
@@ -98,9 +97,9 @@ def random_article(index, titles):
 # Returns: True if favorite article is in the given articles
 # (case insensitive) and False otherwise
 def favorite_article(favorite, titles):
-    fovorite = fovorite.lower() #Changes the favorite title into lower case
+    favorite = favorite.lower() #Changes the favorite title into lower case
     lowercase_titles = [title.lower() for title in titles] #Changes the entire list of titles into lowercase
-    if fovorite in lowercase_titles:
+    if favorite in lowercase_titles:
         return True
     return False
 
