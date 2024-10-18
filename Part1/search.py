@@ -20,6 +20,19 @@ def search(keyword):
             out.append(temp[i])
     return out
 
+#alternate solution(maybe! - we'll see!)
+
+# def search(keyword):
+#     contains_keyword, article_titles_lst = [], article_titles()
+#     if keyword:
+#         for ech in range(len(article_titles_lst)):
+#             if keyword.upper() in article_titles_lst[ech].upper():
+#                 contains_keyword.append(article_titles_lst[ech])
+#         return contains_keyword
+#     else:
+#         return []
+
+
 # 2) 
 #
 # Function: title_length
@@ -52,8 +65,12 @@ def title_length(max_length, titles):
 # given article titles, return an empty list regardless of the count.
 # If the max is larger than the # of titles, just return all titles.
 def article_count(count, titles):
-    pass
-
+    if not titles:
+        return [] 
+    if count > len(titles):
+        return titles
+    else:
+        return titles[:count]
 # 4) 
 #
 # Function: random_article
@@ -99,8 +116,11 @@ def favorite_article(favorite, titles):
 # Returns: searches for article titles from entire list of available
 # articles and adds those articles to list of article titles from basic 
 # search
+
 def multiple_keywords(keyword, titles):
-    pass
+    titles_extended = search(keyword) #uses the same first function to find the titles with the specific keyword
+    return titles.extend(titles_extended) #extends the already existing list of titles with this advanced search.
+
 
 # Prints out articles based on searched keyword and advanced options
 def display_result():
