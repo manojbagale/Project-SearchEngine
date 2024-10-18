@@ -18,6 +18,8 @@ class TestSearch(TestCase):
         expected_dog_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
         self.assertEqual(search('dog'), expected_dog_search_results)
 
+
+    #FUNCTION 1 TEST
     def test_search(self):
         expected_dog_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
         self.assertEqual(search('dog'), expected_dog_search_results)
@@ -42,6 +44,7 @@ class TestSearch(TestCase):
         self.assertEqual(search('mus'), expected_music_search_results)  # Testing partial matches
 
 
+    #FUNCTION 4 TEST
     def test_random_article(self):
         titles = article_titles()
 
