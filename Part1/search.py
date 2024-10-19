@@ -12,7 +12,7 @@ from wiki import article_titles, ask_search, ask_advanced_search
 #
 # Hint: to get list of existing article titles, use article_titles()
 def search(keyword):
-    keyword=keyword.upper()
+    keyword = keyword.upper()
     if keyword == '': #checks if keyword is empty and returns an empty array if so
         return []
     titles, out = article_titles(), []
@@ -99,9 +99,10 @@ def random_article(index, titles):
 # (case insensitive) and False otherwise
 def favorite_article(favorite, titles):
     favorite = favorite.lower() #Changes the favorite title into lower case
-    lowercase_titles = [title.lower() for title in titles] #Changes the entire list of titles into lowercase
-    if favorite in lowercase_titles:
-        return True
+    # Checks if favorite is in titles.
+    for i in range(len(titles)):
+        if favorite == titles[i].lower():
+            return True
     return False
 
 
