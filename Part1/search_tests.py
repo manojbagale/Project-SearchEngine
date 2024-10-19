@@ -158,6 +158,18 @@ class TestSearch(TestCase):
 
         self.assertEqual(output, expected)
 
+        '''Favorite title closely matches a title in list but still is not returned'''
+        output = get_print(input_mock, [keyword, advanced_option, 'french']) # 'french' is similar to 'French pop music'
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + 'french\n' + here_are_your_articles + 'Your favorite article is not in the returned articles!\n'
+
+        self.assertEqual(output, expected)
+
+        '''Checking favorite title that is in titles but different in capital/small letters'''
+        output = get_print(input_mock, [keyword, advanced_option, 'tony kAYe (muSICIAN)']) # corresponds to an actual title 'Tony Kaye (musician)'
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + 'tony kAYe (muSICIAN)\n' + here_are_your_articles + 'Your favorite article is in the returned articles!\n'
+
+        self.assertEqual(output, expected)
+
     #ADVANCED OPTION 6    
     @patch('builtins.input')
     def test_None_test(self, input_mock):
