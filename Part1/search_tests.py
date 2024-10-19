@@ -138,6 +138,39 @@ class TestSearch(TestCase):
         '''Doing the above to check what went wrong'''
         self.assertEqual(output, expected)
 
+
+
+    #ADVANCED OPTION 4
+    @patch('builtins.input')
+    def test_whether_favorite_article_in_list(self, input_mock):
+
+        '''Elements clearly exists in list'''
+        keyword = 'music'
+        advanced_option = 4
+
+        output = get_print(input_mock, [keyword, advanced_option, 'French pop music']) #this exists in the list
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "French pop music\n" + "\nHere are your articles: ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Lights (musician)', 'List of soul musicians', 'Aube (musician)', 'List of overtone musicians', 'Tim Arnold (musician)', 'Peter Brown (music industry)', 'Old-time music', 'Arabic music', 'List of Saturday Night Live musical sketches', 'Joe Becker (musician)', 'Aco (musician)', 'Geoff Smith (British musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Annie (musical)', 'Alex Turner (musician)', 'List of gospel musicians', 'Tom Hooper (musician)', 'Indian classical music', '1996 in music', 'Joseph Williams (musician)', 'The Hunchback of Notre Dame (musical)', 'English folk music (1500–1899)', 'David Levi (musician)', 'George Crum (musician)', 'Traditional Thai musical instruments', 'Charles McPherson (musician)', 'Les Cousins (music club)', 'Paul Carr (musician)', '2006 in music', 'Sean Delaney (musician)', 'Tony Kaye (musician)', 'Danja (musician)', 'Texture (music)', 'Register (music)', '2007 in music', '2008 in music']\n"+"Your favorite article is in the returned articles!\n"
+
+        #print(output, expected)
+        self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+        
+        '''Elements dont exist'''
+        keyword = 'music'
+        advanced_option = 1
+
+        output = get_print(input_mock, [keyword, advanced_option, 4]) #max 4 characters in the output (elements do not exist with 4 chars that have music in them)
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "4\n" + "\nNo articles found\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+
+
     #ADVANCED OPTION 6    
     @patch('builtins.input')
     def test_None_test(self, input_mock):
