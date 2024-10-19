@@ -98,7 +98,7 @@ def random_article(index, titles):
 # Returns: True if favorite article is in the given articles
 # (case insensitive) and False otherwise
 def favorite_article(favorite, titles):
-    favorite = favorite.lower() #Changes the favorite title into lower case
+    favorite = favorite.lower().strip() #Changes the favorite title into lower case and strips the leading and trailing white spaces
     # Checks if favorite is in titles.
     for i in range(len(titles)):
         if favorite == titles[i].lower():
