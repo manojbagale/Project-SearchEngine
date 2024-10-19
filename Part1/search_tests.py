@@ -43,6 +43,7 @@ class TestSearch(TestCase):
         self.assertEqual(search('mUSiC'), expected_music_search_results) # Keyword with mixed case
         self.assertEqual(search('mus'), expected_music_search_results)  # Testing partial matches
 
+<<<<<<< HEAD
     #function 3 test
     
     def test_article_count(self):
@@ -52,6 +53,21 @@ class TestSearch(TestCase):
         self.assertEqual(article_count(4, titles), ["hey", "damn", "hawa mula", "dhfdshfkhdf"])
         self.assertEqual(article_count(1, titles), ["hey"])
         self.assertEqual(article_count(2, titles), ["hey", "damn"])
+=======
+    #FUNCTION 2 TEST
+    def test_title_length(self):
+        expected_music_title_length_10_results = ['Rock music']
+        titles_music = ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Lights (musician)', 'List of soul musicians', 'Aube (musician)', 'List of overtone musicians', 'Tim Arnold (musician)', 'Peter Brown (music industry)', 'Old-time music', 'Arabic music', 'List of Saturday Night Live musical sketches', 'Joe Becker (musician)', 'Aco (musician)', 'Geoff Smith (British musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Annie (musical)', 'Alex Turner (musician)', 'List of gospel musicians', 'Tom Hooper (musician)', 'Indian classical music', '1996 in music', 'Joseph Williams (musician)', 'The Hunchback of Notre Dame (musical)', 'English folk music (1500–1899)', 'David Levi (musician)', 'George Crum (musician)', 'Traditional Thai musical instruments', 'Charles McPherson (musician)', 'Les Cousins (music club)', 'Paul Carr (musician)', '2006 in music', 'Sean Delaney (musician)', 'Tony Kaye (musician)', 'Danja (musician)', 'Texture (music)', 'Register (music)', '2007 in music', '2008 in music']
+        self.assertEqual(title_length(10, titles_music), expected_music_title_length_10_results) 
+        self.assertEqual(title_length(100, titles_music), titles_music) #Title length larger than every title
+        self.assertEqual(title_length(0, titles_music), []) #Title length zero
+        self.assertEqual(title_length(-10, titles_music), []) # Negetive title length
+
+        titles_french = ['French pop music']
+        self.assertEqual(title_length(5, titles_french), []) #When title length is less than the length of all title
+
+        self.assertEqual(title_length(10, ''), []) # When passed no titles
+>>>>>>> d1b9123ec249e6640aa622c4258c4d0e09475ae6
 
 
     #FUNCTION 4 TEST
