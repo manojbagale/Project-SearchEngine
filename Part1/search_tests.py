@@ -82,6 +82,15 @@ class TestSearch(TestCase):
         self.assertEqual(random_article(0, []), '')  #index on an empty list should return ''
         self.assertEqual(random_article(1000, []), '')  #testing empty list with a large index
 
+    #FUNCTION 5 TEST
+    def test_favorite_article(self):
+        titles = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid']
+        self.assertEqual(favorite_article('Endogenous cannabinoid', titles), True) # Testing normal functioning
+        self.assertEqual(favorite_article('endogenOUs cannabinoid', titles), True) # Testing with combination of upper and lower cases
+        self.assertEqual(favorite_article('', titles), False) # No favorite title typed
+        self.assertEqual(favorite_article('endogenOUs cannabinoid', []), False) # No title passed
+        self.assertEqual(favorite_article('', []), False) # Titles and favorite both empty
+
     #####################
     # INTEGRATION TESTS #
     #####################
