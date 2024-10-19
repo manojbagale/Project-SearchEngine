@@ -80,8 +80,38 @@ class TestSearch(TestCase):
         # Test whether calling display_results() with given user input equals expected printout
         self.assertEqual(output, expected)
 
+    #ADVANCED OPTION 1
     @patch('builtins.input')
-    def test_integration_test(self, input_mock):
+    def test_article_title_length_test(self, input_mock):
+
+        '''Elements exist with 15 chars'''
+        keyword = 'music'
+        advanced_option = 1
+
+        output = get_print(input_mock, [keyword, advanced_option, 15]) #max 15 characters in the output
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "15\n" + "\nHere are your articles: ['Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Aube (musician)', 'Old-time music', 'Arabic music', 'Aco (musician)', '1936 in music', 'Annie (musical)', '1996 in music', '2006 in music', 'Texture (music)', '2007 in music', '2008 in music']\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+        
+        '''Elements dont exist'''
+        keyword = 'music'
+        advanced_option = 1
+
+        output = get_print(input_mock, [keyword, advanced_option, 4]) #max 4 characters in the output (elements do not exist with 4 chars that have music in them)
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "4\n" + "\nNo articles found\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+    #ADVANCED OPTION 6    
+    @patch('builtins.input')
+    def test_None_test(self, input_mock):
         keyword = 'music'
         advanced_option = 6
 
