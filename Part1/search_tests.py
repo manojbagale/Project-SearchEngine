@@ -91,7 +91,7 @@ class TestSearch(TestCase):
         titles = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid']
         self.assertEqual(favorite_article('Endogenous cannabinoid', titles), True) # Testing normal functioning
         self.assertEqual(favorite_article('endogenOUs cannabinoid', titles), True) # Testing with combination of upper and lower cases
-        self.assertEqual(favorite_article('   Endogenous cannabinoid   ', titles), True) # Testing normal functioning
+        self.assertEqual(favorite_article('   Endogenous cannabinoid   ', titles), True) # With leading and trailing white spaces
         self.assertEqual(favorite_article('', titles), False) # No favorite title typed
         self.assertEqual(favorite_article('endogenOUs cannabinoid', []), False) # No title passed
         self.assertEqual(favorite_article('', []), False) # Titles and favorite both empty
