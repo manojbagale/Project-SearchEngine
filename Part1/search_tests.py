@@ -43,6 +43,16 @@ class TestSearch(TestCase):
         self.assertEqual(search('mUSiC'), expected_music_search_results) # Keyword with mixed case
         self.assertEqual(search('mus'), expected_music_search_results)  # Testing partial matches
 
+    #function 3 test
+    
+    def test_article_count(self):
+        titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
+        self.assertEqual(article_count(0, titles), [])
+        self.assertEqual(article_count(5, []), [])
+        self.assertEqual(article_count(4, titles), ["hey", "damn", "hawa mula", "dhfdshfkhdf"])
+        self.assertEqual(article_count(1, titles), ["hey"])
+        self.assertEqual(article_count(2, titles), ["hey", "damn"])
+
 
     #FUNCTION 4 TEST
     def test_random_article(self):
