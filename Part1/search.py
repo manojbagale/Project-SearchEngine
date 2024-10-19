@@ -119,8 +119,9 @@ def favorite_article(favorite, titles):
 # search
 
 def multiple_keywords(keyword, titles):
-    titles_extended = search(keyword) #uses the same first function to find the titles with the specific keyword
-    return titles.extend(titles_extended) #extends the already existing list of titles with this advanced search.
+    titles_to_extend = search(keyword) #uses the same first function to find the titles with the specific keyword
+    titles.extend(titles_to_extend) #extends the already existing list of titles with this advanced search.
+    return titles
 
 
 # Prints out articles based on searched keyword and advanced options

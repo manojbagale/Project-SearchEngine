@@ -42,26 +42,6 @@ class TestSearch(TestCase):
         self.assertEqual(search('DoG'), expected_dog_search_results) # Keyword with mixed case
         self.assertEqual(search('mUSiC'), expected_music_search_results) # Keyword with mixed case
         self.assertEqual(search('mus'), expected_music_search_results)  # Testing partial matches
-    
-    # FUNCTION 2 TEST
-    def test_title_length(self):
-        expected_music_title_length_10_results = ['Rock music']
-        titles_music = ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Lights (musician)', 'List of soul musicians', 'Aube (musician)', 'List of overtone musicians', 'Tim Arnold (musician)', 'Peter Brown (music industry)', 'Old-time music', 'Arabic music', 'List of Saturday Night Live musical sketches', 'Joe Becker (musician)', 'Aco (musician)', 'Geoff Smith (British musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Annie (musical)', 'Alex Turner (musician)', 'List of gospel musicians', 'Tom Hooper (musician)', 'Indian classical music', '1996 in music', 'Joseph Williams (musician)', 'The Hunchback of Notre Dame (musical)', 'English folk music (1500–1899)', 'David Levi (musician)', 'George Crum (musician)', 'Traditional Thai musical instruments', 'Charles McPherson (musician)', 'Les Cousins (music club)', 'Paul Carr (musician)', '2006 in music', 'Sean Delaney (musician)', 'Tony Kaye (musician)', 'Danja (musician)', 'Texture (music)', 'Register (music)', '2007 in music', '2008 in music']
-        self.assertEqual(title_length(10, titles_music), expected_music_title_length_10_results) 
-        self.assertEqual(title_length(100, titles_music), titles_music) #Title length larger than every title
-        self.assertEqual(title_length(0, titles_music), []) #Title length zero
-        self.assertEqual(title_length(-10, titles_music), []) # Negetive title length
-
-        title_custom = ['abcde', 'abcdef']
-        self.assertEqual(title_length(6, title_custom), ['abcde', 'abcdef']) # title length exactly equal to max length
-
-
-        titles_french = ['French pop music']
-        self.assertEqual(title_length(5, titles_french), []) #When title length is less than the length of all title
-
-        self.assertEqual(title_length(10, ''), []) # When passed no titles
-
-        
 
 
     #FUNCTION 4 TEST
@@ -107,6 +87,46 @@ class TestSearch(TestCase):
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']\n"
 
         # Test whether calling display_results() with given user input equals expected printout
+        self.assertEqual(output, expected)
+
+    #ADVANCED OPTION 1
+    @patch('builtins.input')
+    def test_article_title_length_test(self, input_mock):
+
+        '''Elements exist with 15 chars'''
+        keyword = 'music'
+        advanced_option = 1
+
+        output = get_print(input_mock, [keyword, advanced_option, 15]) #max 15 characters in the output
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "15\n" + "\nHere are your articles: ['Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Aube (musician)', 'Old-time music', 'Arabic music', 'Aco (musician)', '1936 in music', 'Annie (musical)', '1996 in music', '2006 in music', 'Texture (music)', '2007 in music', '2008 in music']\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+        
+        '''Elements dont exist'''
+        keyword = 'music'
+        advanced_option = 1
+
+        output = get_print(input_mock, [keyword, advanced_option, 4]) #max 4 characters in the output (elements do not exist with 4 chars that have music in them)
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "4\n" + "\nNo articles found\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+    #ADVANCED OPTION 6    
+    @patch('builtins.input')
+    def test_None_test(self, input_mock):
+        keyword = 'music'
+        advanced_option = 6
+
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Lights (musician)', 'List of soul musicians', 'Aube (musician)', 'List of overtone musicians', 'Tim Arnold (musician)', 'Peter Brown (music industry)', 'Old-time music', 'Arabic music', 'List of Saturday Night Live musical sketches', 'Joe Becker (musician)', 'Aco (musician)', 'Geoff Smith (British musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Annie (musical)', 'Alex Turner (musician)', 'List of gospel musicians', 'Tom Hooper (musician)', 'Indian classical music', '1996 in music', 'Joseph Williams (musician)', 'The Hunchback of Notre Dame (musical)', 'English folk music (1500–1899)', 'David Levi (musician)', 'George Crum (musician)', 'Traditional Thai musical instruments', 'Charles McPherson (musician)', 'Les Cousins (music club)', 'Paul Carr (musician)', '2006 in music', 'Sean Delaney (musician)', 'Tony Kaye (musician)', 'Danja (musician)', 'Texture (music)', 'Register (music)', '2007 in music', '2008 in music']\n"
+
         self.assertEqual(output, expected)
 
 # Write tests above this line. Do not remove.
