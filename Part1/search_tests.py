@@ -86,6 +86,7 @@ class TestSearch(TestCase):
     # def test_multiple_keywords(self):
     #     titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
     #     expected_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
+<<<<<<< HEAD
     #     self.assertEqual(multiple_keywords('dog', titles), titles + expected_search_results)
     #     self.assertEqual(multiple_keywords('dog', []), expected_search_results)
     #     self.assertEqual(multiple_keywords('books', []), [])
@@ -109,6 +110,11 @@ class TestSearch(TestCase):
 
         expected_combined_list = []
         self.assertEqual(multiple_keywords('', search('')), expected_combined_list)
+=======
+    #     self.assertEqual(multiple_keywords('dogg', titles), titles + expected_search_results)
+    #     self.assertEqual(multiple_keywords('dog', []), expected_search_results)
+    #     self.assertEqual(multiple_keywords('books', []), [])
+>>>>>>> 51117d1a28b67dd5a04805134cd802842794606e
 
 
     #####################
@@ -156,6 +162,38 @@ class TestSearch(TestCase):
         #print(output, expected)
         #self.maxDiff  = None  
         '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+    #ADVANCED OPTION 4
+    @patch('builtins.input')
+    def test_favorite_article_test(self, input_mock):
+        
+        ''' Favorite title exists in the given title list'''
+        keyword = 'music'
+        advanced_option = 4
+        here_are_your_articles = "\nHere are your articles: ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Lights (musician)', 'List of soul musicians', 'Aube (musician)', 'List of overtone musicians', 'Tim Arnold (musician)', 'Peter Brown (music industry)', 'Old-time music', 'Arabic music', 'List of Saturday Night Live musical sketches', 'Joe Becker (musician)', 'Aco (musician)', 'Geoff Smith (British musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Annie (musical)', 'Alex Turner (musician)', 'List of gospel musicians', 'Tom Hooper (musician)', 'Indian classical music', '1996 in music', 'Joseph Williams (musician)', 'The Hunchback of Notre Dame (musical)', 'English folk music (1500–1899)', 'David Levi (musician)', 'George Crum (musician)', 'Traditional Thai musical instruments', 'Charles McPherson (musician)', 'Les Cousins (music club)', 'Paul Carr (musician)', '2006 in music', 'Sean Delaney (musician)', 'Tony Kaye (musician)', 'Danja (musician)', 'Texture (music)', 'Register (music)', '2007 in music', '2008 in music']\n"
+
+        output = get_print(input_mock, [keyword, advanced_option, 'French pop music']) # Pass French pop music as favorite title
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + 'French pop music\n' + here_are_your_articles + 'Your favorite article is in the returned articles!\n'
+
+        self.assertEqual(output, expected)
+
+        ''' Favorite title does not exist in the list of titles'''
+        output = get_print(input_mock, [keyword, advanced_option, 'japanese music']) # Pass japanese music as favorite title
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + 'japanese music\n' + here_are_your_articles + 'Your favorite article is not in the returned articles!\n'
+
+        self.assertEqual(output, expected)
+
+        '''Favorite title closely matches a title in list but still is not returned'''
+        output = get_print(input_mock, [keyword, advanced_option, 'french']) # 'french' is similar to 'French pop music'
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + 'french\n' + here_are_your_articles + 'Your favorite article is not in the returned articles!\n'
+
+        self.assertEqual(output, expected)
+
+        '''Checking favorite title that is in titles but different in capital/small letters'''
+        output = get_print(input_mock, [keyword, advanced_option, 'tony kAYe (muSICIAN)']) # corresponds to an actual title 'Tony Kaye (musician)'
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + 'tony kAYe (muSICIAN)\n' + here_are_your_articles + 'Your favorite article is in the returned articles!\n'
+
         self.assertEqual(output, expected)
 
     #ADVANCED OPTION 6    
