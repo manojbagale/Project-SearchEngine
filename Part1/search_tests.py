@@ -86,7 +86,6 @@ class TestSearch(TestCase):
     # def test_multiple_keywords(self):
     #     titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
     #     expected_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
-<<<<<<< HEAD
     #     self.assertEqual(multiple_keywords('dog', titles), titles + expected_search_results)
     #     self.assertEqual(multiple_keywords('dog', []), expected_search_results)
     #     self.assertEqual(multiple_keywords('books', []), [])
@@ -110,11 +109,6 @@ class TestSearch(TestCase):
 
         expected_combined_list = []
         self.assertEqual(multiple_keywords('', search('')), expected_combined_list)
-=======
-    #     self.assertEqual(multiple_keywords('dogg', titles), titles + expected_search_results)
-    #     self.assertEqual(multiple_keywords('dog', []), expected_search_results)
-    #     self.assertEqual(multiple_keywords('books', []), [])
->>>>>>> 51117d1a28b67dd5a04805134cd802842794606e
 
 
     #####################
