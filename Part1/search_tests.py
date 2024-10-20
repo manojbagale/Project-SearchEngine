@@ -83,12 +83,32 @@ class TestSearch(TestCase):
         
     #function 6 test
     
+    # def test_multiple_keywords(self):
+    #     titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
+    #     expected_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
+    #     self.assertEqual(multiple_keywords('dog', titles), titles + expected_search_results)
+    #     self.assertEqual(multiple_keywords('dog', []), expected_search_results)
+    #     self.assertEqual(multiple_keywords('books', []), [])
+    
     def test_multiple_keywords(self):
-        titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
-        expected_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
-        self.assertEqual(multiple_keywords('dog', titles), titles + expected_search_results)
-        self.assertEqual(multiple_keywords('dog', []), expected_search_results)
-        self.assertEqual(multiple_keywords('books', []), [])
+
+        expected_combined_list = ['Fiskerton, Lincolnshire', 'Fisk University', 'List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Lights (musician)', 'List of soul musicians', 'Aube (musician)', 'List of overtone musicians', 'Tim Arnold (musician)', 'Peter Brown (music industry)', 'Old-time music', 'Arabic music', 'List of Saturday Night Live musical sketches', 'Joe Becker (musician)', 'Aco (musician)', 'Geoff Smith (British musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Annie (musical)', 'Alex Turner (musician)', 'List of gospel musicians', 'Tom Hooper (musician)', 'Indian classical music', '1996 in music', 'Joseph Williams (musician)', 'The Hunchback of Notre Dame (musical)', 'English folk music (1500–1899)', 'David Levi (musician)', 'George Crum (musician)', 'Traditional Thai musical instruments', 'Charles McPherson (musician)', 'Les Cousins (music club)', 'Paul Carr (musician)', '2006 in music', 'Sean Delaney (musician)', 'Tony Kaye (musician)', 'Danja (musician)', 'Texture (music)', 'Register (music)', '2007 in music', '2008 in music']
+        self.assertEqual(multiple_keywords('music', search('Fisk')), expected_combined_list)
+
+        expected_combined_list = ['Fiskerton, Lincolnshire', 'Fisk University']
+        self.assertEqual(multiple_keywords('Vision\'s Legacy', search('Fisk')), expected_combined_list)
+
+        expected_combined_list = ['Fiskerton, Lincolnshire', 'Fisk University', 'List of dystopian music, TV programs, and games', 'List of computer role-playing games', 'List of video games with time travel']
+        self.assertEqual(multiple_keywords('games', search('Fisk')), expected_combined_list)
+
+        expected_combined_list = []
+        self.assertEqual(multiple_keywords('xyabc', search('')), expected_combined_list)
+
+        expected_combined_list = []
+        self.assertEqual(multiple_keywords('', search('xyabc')), expected_combined_list)
+
+        expected_combined_list = []
+        self.assertEqual(multiple_keywords('', search('')), expected_combined_list)
 
 
     #####################
