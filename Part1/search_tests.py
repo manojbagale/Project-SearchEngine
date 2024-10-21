@@ -43,7 +43,7 @@ class TestSearch(TestCase):
         self.assertEqual(search('mUSiC'), expected_music_search_results) # Keyword with mixed case
         self.assertEqual(search('mus'), expected_music_search_results)  # Testing partial matches
 
-    #function 4 test
+    #FUNCTION 2 TEST
     
     def test_title_length(self):
         expected_music_title_length_10_results = ['Rock music']
@@ -172,6 +172,49 @@ class TestSearch(TestCase):
         #self.maxDiff  = None  
         '''Doing the above to check what went wrong'''
         self.assertEqual(output, expected)
+    
+
+    #ADVANCED OPTION 3
+    @patch('builtins.input')
+    def test_random_article_test(self, input_mock):
+
+        '''random article within the valid range'''
+        keyword = 'music'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option, 5]) #searching for title in index 5
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "5\n" + "\nHere are your articles: 2009 in music\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+        
+        '''random article index greater than valid range'''
+        keyword = 'ken'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option, 2]) #searching for title in index 2 (which doesn't exist)
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "2\n" + "\nNo articles found\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+        '''random article index greater than valid range'''
+        keyword = 'ken'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option, -10]) #searching for title in index 2 (which doesn't exist)
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "-10\n" + "\nNo articles found\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
     
 
     #ADVANCED OPTION 4
