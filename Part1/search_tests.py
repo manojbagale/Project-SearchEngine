@@ -181,7 +181,7 @@ class TestSearch(TestCase):
         keyword = 'music'
         advanced_option = 3
 
-        output = get_print(input_mock, [keyword, advanced_option, 5]) #ma
+        output = get_print(input_mock, [keyword, advanced_option, 5]) #searching for title in index 5
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "5\n" + "\nHere are your articles: 2009 in music\n"
 
         #print(output, expected)
@@ -194,7 +194,7 @@ class TestSearch(TestCase):
         keyword = 'ken'
         advanced_option = 3
 
-        output = get_print(input_mock, [keyword, advanced_option, 2]) 
+        output = get_print(input_mock, [keyword, advanced_option, 2]) #searching for title in index 2 (which doesn't exist)
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "2\n" + "\nNo articles found\n"
 
         #print(output, expected)
@@ -206,7 +206,7 @@ class TestSearch(TestCase):
         keyword = 'ken'
         advanced_option = 3
 
-        output = get_print(input_mock, [keyword, advanced_option, -10]) 
+        output = get_print(input_mock, [keyword, advanced_option, -10]) #searching for title in index 2 (which doesn't exist)
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "-10\n" + "\nNo articles found\n"
 
         #print(output, expected)
