@@ -101,7 +101,7 @@ def favorite_article(favorite, titles):
     favorite = favorite.lower().strip() #Changes the favorite title into lower case and strips the leading and trailing white spaces
     # Checks if favorite is in titles.
     for i in range(len(titles)):
-        if favorite == titles[i].lower():
+        if favorite in titles[i].lower():
             return True
     return False
 
