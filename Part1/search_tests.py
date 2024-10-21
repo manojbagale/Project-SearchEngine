@@ -173,6 +173,49 @@ class TestSearch(TestCase):
         '''Doing the above to check what went wrong'''
         self.assertEqual(output, expected)
 
+    #ADVANCED OPTION 3
+    @patch('builtins.input')
+    def test_random_article_test(self, input_mock):
+
+        '''random article within the valid range'''
+        keyword = 'music'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option, 5]) #ma
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "5\n" + "\nHere are your articles: 2009 in music\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+        
+        '''random article index greater than valid range'''
+        keyword = 'ken'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option, 2]) 
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "2\n" + "\nNo articles found\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+        '''random article index greater than valid range'''
+        keyword = 'ken'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option, -10]) 
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "-10\n" + "\nNo articles found\n"
+
+        #print(output, expected)
+        #self.maxDiff  = None  
+        '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+
+    
+
     #ADVANCED OPTION 4
     @patch('builtins.input')
     def test_favorite_article_test(self, input_mock):
