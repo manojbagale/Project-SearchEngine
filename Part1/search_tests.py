@@ -20,6 +20,7 @@ class TestSearch(TestCase):
 
 
     #FUNCTION 1 TEST
+    
     def test_search(self):
         expected_dog_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
         self.assertEqual(search('dog'), expected_dog_search_results)
@@ -70,6 +71,7 @@ class TestSearch(TestCase):
 
 
     #FUNCTION 4 TEST
+    
     def test_random_article(self):
         titles = article_titles()
 
@@ -88,6 +90,7 @@ class TestSearch(TestCase):
         self.assertEqual(random_article(1000, []), '')  #testing empty list with a large index
 
     #FUNCTION 5 TEST
+    
     def test_favorite_article(self):
         titles = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid']
         self.assertEqual(favorite_article('Endogenous cannabinoid', titles), True) # Testing normal functioning
@@ -97,13 +100,6 @@ class TestSearch(TestCase):
         self.assertEqual(favorite_article('', []), False) # Titles and favorite both empty
         
     #FUNCTION 6 TEST
-    
-    # def test_multiple_keywords(self):
-    #     titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
-    #     expected_search_results = ['Edogawa, Tokyo', 'Kevin Cadogan', 'Endogenous cannabinoid', 'Black dog (ghost)', '2007 Bulldogs RLFC season', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', '2009 Louisiana Tech Bulldogs football team', 'Georgia Bulldogs football', 'Endoglin', 'Sun dog', 'The Mandogs', 'Georgia Bulldogs football under Robert Winston', 'Landseer (dog)']
-    #     self.assertEqual(multiple_keywords('dog', titles), titles + expected_search_results)
-    #     self.assertEqual(multiple_keywords('dog', []), expected_search_results)
-    #     self.assertEqual(multiple_keywords('books', []), [])
     
     def test_multiple_keywords(self):
 
@@ -180,11 +176,26 @@ class TestSearch(TestCase):
         
         keyword = 'music'
         advanced_option = 2
-
+        
+        '''2 given as article count'''
         output = get_print(input_mock, [keyword, advanced_option, 2]) 
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "2\n" + "\nHere are your articles: ['List of Canadian musicians', 'French pop music']\n"
         self.assertEqual(output, expected)
-    
+        
+        '''4 given as article count'''
+        output = get_print(input_mock, [keyword, advanced_option, 4]) 
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "4\n" + "\nHere are your articles: ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music']\n"
+        self.assertEqual(output, expected)
+        
+        '''human given as the keyword
+           3 given as the max_length'''
+           
+        keyword = 'human'
+        advanced_option = 2
+        output = get_print(input_mock, [keyword, advanced_option, 4]) 
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "4\n" + "\nHere are your articles: ['Human computer']\n"
+        self.assertEqual(output, expected)
+
 
     #ADVANCED OPTION 3
     @patch('builtins.input')
@@ -271,9 +282,21 @@ class TestSearch(TestCase):
         keyword = 'human'
         advanced_option = 5
 
+        '''ken given for the multiple keyword'''
         output = get_print(input_mock, [keyword, advanced_option, "ken"]) 
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "ken\n" +"\nHere are your articles: ['Human computer', 'Ken Kennedy (computer scientist)']\n"
         self.assertEqual(output, expected)
+        
+        '''john given for the mutiple keyword'''
+        output = get_print(input_mock, [keyword, advanced_option, "john"]) 
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "john\n" +"\nHere are your articles: ['Human computer', 'Will Johnson (soccer)']\n"
+        self.assertEqual(output, expected)
+
+        '''Empty string given'''
+        output = get_print(input_mock, [keyword, advanced_option, ""]) 
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\n" +"\nHere are your articles: ['Human computer']\n"
+        self.assertEqual(output, expected)
+
 
     #ADVANCED OPTION 6
         
@@ -281,9 +304,9 @@ class TestSearch(TestCase):
     def test_None_test(self, input_mock):
         keyword = 'music'
         advanced_option = 6
+        
         output = get_print(input_mock, [keyword, advanced_option])
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', '2009 in music', 'Rock music', 'Lights (musician)', 'List of soul musicians', 'Aube (musician)', 'List of overtone musicians', 'Tim Arnold (musician)', 'Peter Brown (music industry)', 'Old-time music', 'Arabic music', 'List of Saturday Night Live musical sketches', 'Joe Becker (musician)', 'Aco (musician)', 'Geoff Smith (British musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Annie (musical)', 'Alex Turner (musician)', 'List of gospel musicians', 'Tom Hooper (musician)', 'Indian classical music', '1996 in music', 'Joseph Williams (musician)', 'The Hunchback of Notre Dame (musical)', 'English folk music (1500–1899)', 'David Levi (musician)', 'George Crum (musician)', 'Traditional Thai musical instruments', 'Charles McPherson (musician)', 'Les Cousins (music club)', 'Paul Carr (musician)', '2006 in music', 'Sean Delaney (musician)', 'Tony Kaye (musician)', 'Danja (musician)', 'Texture (music)', 'Register (music)', '2007 in music', '2008 in music']\n"
-
         self.assertEqual(output, expected)
     
 

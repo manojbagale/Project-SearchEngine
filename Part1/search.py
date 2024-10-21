@@ -48,7 +48,7 @@ def search(keyword):
 def title_length(max_length, titles):
     result = []
     for title in titles:
-        if len(title) <= max_length:
+        if len(title) <= max_length: 
             result.append(title)
     return result
 
