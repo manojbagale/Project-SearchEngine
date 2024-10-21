@@ -58,7 +58,7 @@ class TestSearch(TestCase):
 
         self.assertEqual(title_length(10, ''), []) # When passed no titles
         
-    #function 3 test
+    #FUNCTION 3 TEST
     
     def test_article_count(self):
         titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
@@ -96,7 +96,7 @@ class TestSearch(TestCase):
         self.assertEqual(favorite_article('endogenOUs cannabinoid', []), False) # No title passed
         self.assertEqual(favorite_article('', []), False) # Titles and favorite both empty
         
-    #function 6 test
+    #FUNCTION 6 TEST
     
     # def test_multiple_keywords(self):
     #     titles = ["hey", "damn", "hawa mula", "dhfdshfkhdf", "sdfdsf", "sdfd"]
@@ -171,6 +171,18 @@ class TestSearch(TestCase):
         #print(output, expected)
         #self.maxDiff  = None  
         '''Doing the above to check what went wrong'''
+        self.assertEqual(output, expected)
+    
+
+    #ADVANCED OPTION 2
+    @patch('builtins.input')
+    def test_article_count_test(self, input_mock):
+        
+        keyword = 'music'
+        advanced_option = 2
+
+        output = get_print(input_mock, [keyword, advanced_option, 2]) 
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "2\n" + "\nHere are your articles: ['List of Canadian musicians', 'French pop music']\n"
         self.assertEqual(output, expected)
     
 
@@ -249,19 +261,9 @@ class TestSearch(TestCase):
 
         self.assertEqual(output, expected)
         
-    #Advanced Test 2
-    
-    @patch('builtins.input')
-    def test_article_count_test(self, input_mock):
-        
-        keyword = 'music'
-        advanced_option = 2
 
-        output = get_print(input_mock, [keyword, advanced_option, 2]) 
-        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "2\n" + "\nHere are your articles: ['List of Canadian musicians', 'French pop music']\n"
-        self.assertEqual(output, expected)
     
-    #Advanced Test 5
+    #ADVANCED OPTION 5
     
     @patch('builtins.input')
     def test_multiple_keyword_test(self, input_mock):
