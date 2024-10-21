@@ -43,7 +43,7 @@ class TestSearch(TestCase):
         self.assertEqual(search('mUSiC'), expected_music_search_results) # Keyword with mixed case
         self.assertEqual(search('mus'), expected_music_search_results)  # Testing partial matches
 
-    #function 4 test
+    #FUNCTION 2 TEST
     
     def test_title_length(self):
         expected_music_title_length_10_results = ['Rock music']
