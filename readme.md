@@ -29,14 +29,24 @@ The user is then prompted for different options to perform an advanced search. T
 
 6. **None** - user does not want an advanced search.
 
-## Installation
 
-1. **Clone the repository:**
+## Project[pt.2] Overview
 
-   ```bash
-   git clone https://github.com/your-username/simplified-search-engine.git
-   cd simplified-search-engine
+### Part 1: Keyword Search in Article Titles
+In the first part of this project, we searched a list of article titles to check if they contain a user-provided keyword as part of the title. 
 
-2. **Set up the environment:**
-   Ensure you have Python 3.8 or higher installed on your machine. Install the required dependencies using pip.
+### Part 2: Metadata Search
+In this section, we’ll search through a 2D list of article metadata to find articles relevant to a keyword, not just those with titles that strictly include it.
+
+- **Fetching Metadata**: Use `wiki.article_metadata()` to retrieve a 2D list where each row represents an article, containing:
+    1. Article title (string)
+    2. Author name (string)
+    3. Publication timestamp (int, Unix/Epoch Time)
+    4. Article character count (int)
+    5. Keywords related to the content (list of strings)
+
+Example row:
+```plaintext
+['Spongebob - the legacy', 'Mr Jake', 1172208041, 5569, ['Spongebob', 'cartoon', 'pineapple', 'tv', 'sponge', 'nickelodeon', 'legacy']]
+
    
