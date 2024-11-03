@@ -17,8 +17,20 @@ from wiki import article_metadata, ask_search, ask_advanced_search
 #   If the user does not enter anything, return an empty list
 #
 # Hint: to get list of existing article metadata, use article_metadata()
+
 def search(keyword):
-    pass
+    if keyword == '':
+        return []
+
+    output = []
+    metadata = article_metadata()
+
+    for data in metadata:
+        for relevant_keyword in data[-1]:
+            if keyword.upper() == relevant_keyword.upper():
+                output.append([data[0], data[1], data[2], data[3]])
+    return output
+
 
 # 2) 
 #
@@ -47,8 +59,18 @@ def article_length(max_length, metadata):
 #   considered the same if they are a case-insensitive match. If count is 
 #   larger than the number of unique authors, return all articles with the 
 #   duplicate authors removed.
+
 def unique_authors(count, metadata):
-    pass
+    unique_authors = {}
+    # for ech_item in metadata:
+    for data in metadata:
+        if not data[1].lower() in unique_authors:
+            unique_authors.update({data[1].lower():data})
+    unique_authors = list(unique_authors.values())
+    # print(len(unique_authors[:count]))
+    return unique_authors[:count]
+
+# print(unique_authors(4, article_metadata()))
 
 # 4) 
 #
@@ -86,7 +108,11 @@ def favorite_author(favorite, metadata):
 # Returns: list of Tuples containing (title, author) for all of the given 
 #   metadata.
 def title_and_author(metadata):
-    pass
+    output = []
+    for data in metadata:
+        output.append((data[0], data[1])) # (data[0], data[1]) gets added as a tuple
+    return output
+
 
 # 7) 
 #
@@ -102,8 +128,18 @@ def title_and_author(metadata):
 #   be in the same order that they were returned in the basic search. Two
 #   articles can be considered the same if both their author and article title
 #   match exactly.
+
 def refine_search(keyword, metadata):
-    pass
+    # first extracting a set of (title, author) from the search results
+    search_results_set = set(title_and_author(search(keyword)))
+    
+    # and we filter metadata to include only entries present in the search results
+    output = []
+    for data in metadata:
+        if (data[0], data[1]) in search_results_set:
+            output.append(data)
+    return output
+
 
 # Prints out articles based on searched keyword and advanced options
 def display_result():
