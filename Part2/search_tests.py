@@ -233,7 +233,7 @@ class TestSearch(TestCase):
         self.assertEqual(output, expected)
 
     
-    # FUNCTION 2 INTEGRATION TEST
+    # ADVANCED OPTION 2: INTEGRATION TEST
     @patch('builtins.input')
     def test_number_of_unique_authors(self, input_mock):
 
@@ -318,6 +318,35 @@ class TestSearch(TestCase):
 
 
     # FUNCTION 4 INTEGRATION TEST
+    # #ADVANCED OPTION 2: INTEGRATION TEST
+    # @patch('builtins.input')
+    # def test_advanced_option_2(self, input_mock):
+    #     '''
+    #     college as keyword provided and advanced response 2
+    #     '''
+    #     keyword = 'college'
+    #     advanced_option = 2
+    #     advanced_response = 2
+       
+    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Rock music', 'Mack Johnson', 1258069053, 119498], ['Fisk University', 'RussBot', 1263393671, 16246]]\n"
+        
+    #     self.assertEqual(output, expected)
+    
+    #     '''
+    #     empty keyword provided and advance reponse 2
+    #     '''
+    #     keyword = ''
+    #     advanced_option = 2
+    #     advanced_response = 2
+       
+    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+        
+    #     self.assertEqual(output, expected)
+
+
+    # ADVACNED OTPION 3: INTEGRATION TEST
     @patch('builtins.input')
     def test_most_recent_article_test(self, input_mock):
         # Test Normal Case
@@ -348,7 +377,7 @@ class TestSearch(TestCase):
         self.assertEqual(output, expected)        
 
 
-    # FUNCTION 5 INTEGRATION TEST
+    # ADVANCED OPTION 4: INTEGRATION TEST
     @patch('builtins.input')
     def test_favorite_author_test(self, input_mock):
         # Test Normal Case: True
@@ -391,6 +420,64 @@ class TestSearch(TestCase):
         output = get_print(input_mock, [keyword, advanced_option, advanced_response])
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\n" + "No articles found"+ "\n" + "Your favorite author is not in the returned articles!\n"
         self.assertEqual(output, expected)
+    
+    #ADVANCED OPTION 5: INTEGRATION TEST
+    @patch('builtins.input')
+    def test_advanced_option_5(self, input_mock):
+        '''
+        college provided as keyword for the advanced option 5
+        '''
+        
+        keyword = 'college'
+        advanced_option = 5
+       
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: [('Rock music', 'Mack Johnson'), ('Fisk University', 'RussBot')]\n"
+        
+        self.assertEqual(output, expected)
+
+        '''
+        man provided as keyword for the advanced option 5
+        '''
+        
+        keyword = 'man'
+        advanced_option = 5
+       
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: [('Black dog (ghost)', 'Pegship'), ('List of dystopian music, TV programs, and games', 'Bearcat')]\n"
+        
+        self.assertEqual(output, expected)
+    
+    #ADVANCED OPTION 6: INTEGRATION TEST
+    @patch('builtins.input')
+    def test_refine_search_test(self, input_mock):
+        '''
+        college provided as keyword and advanced_respose "fisk"
+        '''
+        
+        keyword = 'college'
+        advanced_option = 6
+        advanced_response = 'fisk'
+       
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Fisk University', 'RussBot', 1263393671, 16246]]\n"
+        
+        self.assertEqual(output, expected)
+        
+        '''
+        music provided as keyword and advanced_response "lee"
+        '''
+        
+        keyword = 'music'
+        advanced_option = 6
+        advanced_response = 'lee'
+       
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['List of Canadian musicians', 'Jack Johnson', 1181623340, 21023]]\n"
+        
+        self.assertEqual(output, expected)
+
+
 
 
 
