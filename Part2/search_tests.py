@@ -233,75 +233,75 @@ class TestSearch(TestCase):
         self.assertEqual(output, expected)
 
     
-    # # ADVANCED OPTION 2: INTEGRATION TEST
-    # @patch('builtins.input')
-    # def test_unique_author(self, input_mock):
-
-    #     #testing for normal cases
-    #     keyword = 'mLs'
-    #     advanced_option = 2
-    #     advanced_response = 4
-
-    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]\n"
-
-    #     self.assertEqual(output, expected)
-
-    #     keyword = 'cANADa'
-    #     advanced_option = 2
-    #     advanced_response = 7
-
-    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]\n"
-
-    #     self.assertEqual(output, expected)
-
-    #     #empty keyword
-    #     keyword = ''
-    #     advanced_option = 2
-    #     advanced_response = 700
-
-    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
-
-    #     self.assertEqual(output, expected)
-
-    #     #keyword exists but max number of unique authors doesn't
-    #     keyword = 'soccer'
-    #     advanced_option = 2
-    #     advanced_response = 0
-
-    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
-
-    #     self.assertEqual(output, expected)
-
-    #ADVANCED OPTION 2: INTEGRATION TEST
+    # ADVANCED OPTION 2: INTEGRATION TEST
     @patch('builtins.input')
-    def test_advanced_option_2(self, input_mock):
-        '''
-        college as keyword provided and advanced response 2
-        '''
-        keyword = 'college'
+    def test_unique_author(self, input_mock):
+
+        #testing for normal cases
+        keyword = 'mLs'
         advanced_option = 2
-        advanced_response = 2
-       
+        advanced_response = 4
+
         output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Rock music', 'Mack Johnson', 1258069053, 119498], ['Fisk University', 'RussBot', 1263393671, 16246]]\n"
-        
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]\n"
+
         self.assertEqual(output, expected)
-    
-        '''
-        empty keyword provided and advance reponse 2
-        '''
+
+        keyword = 'cANADa'
+        advanced_option = 2
+        advanced_response = 7
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]\n"
+
+        self.assertEqual(output, expected)
+
+        #empty keyword
         keyword = ''
         advanced_option = 2
-        advanced_response = 2
-       
+        advanced_response = 700
+
         output = get_print(input_mock, [keyword, advanced_option, advanced_response])
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
-        
+
         self.assertEqual(output, expected)
+
+        #keyword exists but max number of unique authors doesn't
+        keyword = 'soccer'
+        advanced_option = 2
+        advanced_response = 0
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+
+        self.assertEqual(output, expected)
+
+    # #ADVANCED OPTION 2: INTEGRATION TEST
+    # @patch('builtins.input')
+    # def test_advanced_option_2(self, input_mock):
+    #     '''
+    #     college as keyword provided and advanced response 2
+    #     '''
+    #     keyword = 'college'
+    #     advanced_option = 2
+    #     advanced_response = 2
+       
+    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Rock music', 'Mack Johnson', 1258069053, 119498], ['Fisk University', 'RussBot', 1263393671, 16246]]\n"
+        
+    #     self.assertEqual(output, expected)
+    
+    #     '''
+    #     empty keyword provided and advance reponse 2
+    #     '''
+    #     keyword = ''
+    #     advanced_option = 2
+    #     advanced_response = 2
+       
+    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+        
+    #     self.assertEqual(output, expected)
 
 
     # ADVACNED OTPION 3: INTEGRATION TEST
