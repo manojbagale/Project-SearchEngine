@@ -18,7 +18,18 @@ from wiki import article_metadata, ask_search, ask_advanced_search
 #
 # Hint: to get list of existing article metadata, use article_metadata()
 def search(keyword):
-    pass
+
+    if keyword == '':
+        return []
+
+    output = []
+    metadata = article_metadata()
+
+    for data in metadata:
+        for relevant_keyword in data[-1]:
+            if keyword.upper() == relevant_keyword.upper():
+                output.append([data[0], data[1], data[2], data[3]])
+    return output
 
 # 2) 
 #
@@ -31,7 +42,14 @@ def search(keyword):
 # Returns: list of article metadata from given metadata with articles not
 #   exceeding max_length number of characters
 def article_length(max_length, metadata):
-    pass
+
+    output = []
+
+    for data in metadata:
+        if data[3] <= max_length:
+            output.append(data)
+    
+    return output
 
 # 3) 
 #
