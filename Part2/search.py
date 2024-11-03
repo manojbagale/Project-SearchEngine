@@ -19,18 +19,7 @@ from wiki import article_metadata, ask_search, ask_advanced_search
 # Hint: to get list of existing article metadata, use article_metadata()
 
 def search(keyword):
-    if keyword == '':
-        return []
-
-    output = []
-    metadata = article_metadata()
-
-    for data in metadata:
-        for relevant_keyword in data[-1]:
-            if keyword.upper() == relevant_keyword.upper():
-                output.append([data[0], data[1], data[2], data[3]])
-    return output
-
+    pass
 
 # 2) 
 #
@@ -43,7 +32,14 @@ def search(keyword):
 # Returns: list of article metadata from given metadata with articles not
 #   exceeding max_length number of characters
 def article_length(max_length, metadata):
-    pass
+
+    output = []
+
+    for data in metadata:
+        if data[3] <= max_length:
+            output.append(data)
+    
+    return output
 
 # 3) 
 #
@@ -83,7 +79,14 @@ def unique_authors(count, metadata):
 #   to the timestamp. Note this should return just a 1D list representing
 #   a single article.
 def most_recent_article(metadata):
-    pass
+    if len(metadata) ==  0:
+        return ''
+    
+    latest = metadata[0]
+    for article_row in metadata:
+        if article_row[2] > latest[2]:
+            latest = article_row
+    return latest
 
 # 5) 
 #
@@ -96,7 +99,10 @@ def most_recent_article(metadata):
 # Returns: True if favorite author is in the given articles (case 
 #   insensitive), False otherwise
 def favorite_author(favorite, metadata):
-    pass
+    for article_row in metadata:
+        if article_row[1].lower() == favorite.lower():
+            return True
+    return False
 
 # 6) 
 #
