@@ -277,7 +277,7 @@ class TestSearch(TestCase):
         self.assertEqual(output, expected)
 
     
-    # FUNCTION 3 INTEGRATION TEST
+    # ADVANCED OPTION 3: INTEGRATION TEST
     @patch('builtins.input')
     def test_most_recent_article(self, input_mock):
 
