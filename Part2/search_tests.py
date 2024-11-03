@@ -54,7 +54,6 @@ class TestSearch(TestCase):
 
 
 
-
     #####################
     # INTEGRATION TESTS #
     #####################
@@ -74,7 +73,6 @@ class TestSearch(TestCase):
     # FUNCTION 4 INTEGRATION TEST
     @patch('builtins.input')
     def test_most_recent_article_test(self, input_mock):
-
         # Test Normal Case
         keyword = 'soccer'
         advanced_option = 3
@@ -106,7 +104,6 @@ class TestSearch(TestCase):
     # FUNCTION 5 INTEGRATION TEST
     @patch('builtins.input')
     def test_favorite_author_test(self, input_mock):
-
         # Test Normal Case: True
         keyword = 'music'
         advanced_option = 4
