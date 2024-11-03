@@ -67,14 +67,13 @@ def article_length(max_length, metadata):
 #   duplicate authors removed.
 
 def unique_authors(count, metadata):
-    unique_authors = {}
-    # for ech_item in metadata:
+    author = set()
+    result = []
     for data in metadata:
-        if not data[1].lower() in unique_authors:
-            unique_authors.update({data[1].lower():data})
-    unique_authors = list(unique_authors.values())
-    # print(len(unique_authors[:count]))
-    return unique_authors[:count]
+        if not data[1].upper() in author and (len(author) < count):
+            result.append(data)
+        author.add(data[1].upper())
+    return result
 
 # print(unique_authors(4, article_metadata()))
 

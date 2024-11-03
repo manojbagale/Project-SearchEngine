@@ -152,6 +152,20 @@ class TestSearch(TestCase):
         # no articles satisfying the conditions
         assert article_length(1000, single_article_metadata) == []
 
+    # FUNCTION 3 UNIT TEST
+    def test_unique_authors(self):
+        
+        search_results = [
+        ['Rock music', 'Raken Maharjan', 1258069053, 119498],
+        ['Fisk University', 'Damnman', 1263393671, 16246],
+        ['Jazz Studies', 'Mack Johnson', 1267891234, 154321],
+        ['Science and Technology', 'Dr. Brown', 1274567890, 145678]
+        ]
+        
+        self.assertEqual(unique_authors(4, search_results), search_results)
+        self.assertEqual(unique_authors(1, search_results), [['Rock music', 'Raken Maharjan', 1258069053, 119498]])
+        self.assertEqual(unique_authors(0, search_results), [])
+        self.assertEqual(unique_authors(-1, search_results), [])
 
     # FUNCTION 4 UNIT TEST
     def test_most_recent_article(self):
