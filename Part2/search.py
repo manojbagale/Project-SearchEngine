@@ -61,7 +61,14 @@ def unique_authors(count, metadata):
 #   to the timestamp. Note this should return just a 1D list representing
 #   a single article.
 def most_recent_article(metadata):
-    pass
+    if len(metadata) ==  0:
+        return ''
+    
+    latest = metadata[0]
+    for article_row in metadata:
+        if article_row[2] > metadata:
+            latest = article_row
+    return latest
 
 # 5) 
 #
@@ -74,7 +81,10 @@ def most_recent_article(metadata):
 # Returns: True if favorite author is in the given articles (case 
 #   insensitive), False otherwise
 def favorite_author(favorite, metadata):
-    pass
+    for article_row in metadata:
+        if article_row[1].lower() == favorite.lower():
+            return True
+    return False
 
 # 6) 
 #
