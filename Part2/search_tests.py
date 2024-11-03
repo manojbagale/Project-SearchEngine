@@ -18,6 +18,140 @@ class TestSearch(TestCase):
         ]
         self.assertEqual(search('soccer'), expected_search_soccer_results)
 
+    # FUNCTION 1 UNIT TEST
+    def test_search(self):
+
+        # Basic Test
+        output_for_rock = [['List of Canadian musicians', 'Jack Johnson', 1181623340, 21023], 
+                                  ['Noise (music)', 'jack johnson', 1194207604, 15641], 
+                                  ['2009 in music', 'RussBot', 1235133583, 69451], 
+                                  ['Rock music', 'Mack Johnson', 1258069053, 119498], 
+                                  ['Arabic music', 'RussBot', 1209417864, 25114], 
+                                  ['List of dystopian music, TV programs, and games', 'Bearcat', 1165317338, 13458], 
+                                  ['Steve Perry (musician)', 'Nihonjoe', 1254812045, 22204], 
+                                  ['Alex Turner (musician)', 'jack johnson', 1187010135, 9718], 
+                                  ['2006 in music', 'Jack Johnson', 1171547747, 105280], 
+                                  ['Sean Delaney (musician)', 'Nihonjoe', 1204328174, 5638], 
+                                  ['Tony Kaye (musician)', 'Burna Boy', 1141489894, 8419], 
+                                  ['2007 in music', 'Bearcat', 1169248845, 45652], 
+                                  ['2008 in music', 'Burna Boy', 1217641857, 107605]]
+        
+        assert search('rock') == output_for_rock
+        # Case-Insensitive test
+        assert search('RoCk') == output_for_rock
+
+        assert search('soCcER') == [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], 
+                                    ['Will Johnson (soccer)', 'Burna Boy', 1218489712, 3562], 
+                                    ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]
+
+        # No Matches Test
+        assert search('nonexistent') == []
+        assert search('Bearcat') == []
+
+        # Empty Keyword Test
+        assert search('') == []
+
+        # Partial Matches Test (should not match partially)
+        assert search('mu') == []
+        assert search('a') == []
+
+        # Numeric Keyword Test
+        assert search('2007') == [['2007 Bulldogs RLFC season', 'Burna Boy', 1177410119, 11116], 
+                                  ['List of dystopian music, TV programs, and games', 'Bearcat', 1165317338, 13458], 
+                                  ['Annie (musical)', 'Jack Johnson', 1223619626, 27558], 
+                                  ['Alex Turner (musician)', 'jack johnson', 1187010135, 9718], 
+                                  ['Tony Kaye (musician)', 'Burna Boy', 1141489894, 8419], 
+                                  ['2007 in music', 'Bearcat', 1169248845, 45652], 
+                                  ["Wake Forest Demon Deacons men's soccer", 'Burna Boy', 1260577388, 26745]]
+        
+        assert search('2008') == [['2009 in music', 'RussBot', 1235133583, 69451], 
+                                  ['Lights (musician)', 'Burna Boy', 1213914297, 5898], 
+                                  ['USC Trojans volleyball', 'jack johnson', 1218049435, 5525], 
+                                  ['Will Johnson (soccer)', 'Burna Boy', 1218489712, 3562], 
+                                  ['List of dystopian music, TV programs, and games', 'Bearcat', 1165317338, 13458], 
+                                  ['Alex Turner (musician)', 'jack johnson', 1187010135, 9718], 
+                                  ['Personal computer', 'Pegship', 1220391790, 45663], 
+                                  ['2008 in music', 'Burna Boy', 1217641857, 107605], 
+                                  ["Wake Forest Demon Deacons men's soccer", 'Burna Boy', 1260577388, 26745]]
+        
+
+    # FUNCTION 2 UNIT TEST
+    def test_article_length(self):
+
+        
+        #I'm using a sample metadata for this part so there is less volume of data to deal with.
+        sample_metadata = [
+            ['Landseer (dog)', 'Bearcat', 1231438650, 2006],
+            ['Charles McPherson (musician)', 'Bearcat', 1255183865, 3007],
+            ['Comparison of programming languages (basic instructions)', 'RussBot', 1238781354, 61644],
+            ['Les Cousins (music club)', 'Mack Johnson', 1187072433, 4926],
+            ['Paul Carr (musician)', 'Burna Boy', 1254142018, 5716],
+            ['2006 in music', 'Jack Johnson', 1171547747, 105280],
+            ['Spawning (computer gaming)', 'jack johnson', 1176750529, 3413],
+            ['Sean Delaney (musician)', 'Nihonjoe', 1204328174, 5638],
+            ['Tony Kaye (musician)', 'Burna Boy', 1141489894, 8419],
+            ['Danja (musician)', 'RussBot', 1257155543, 6925],
+            ['Ruby (programming language)', 'Bearcat', 1193928035, 30284],
+            ['Texture (music)', 'Bearcat', 1161070178, 3626],
+            ['List of computer role-playing games', 'Mr Jake', 1179441080, 43088],
+            ['Register (music)', 'Pegship', 1082665179, 598],
+            ['Mode (computer interface)', 'Pegship', 1182732608, 2991],
+            ['2007 in music', 'Bearcat', 1169248845, 45652],
+            ['List of video games with time travel', 'Mack Johnson', 1234110556, 2344],
+            ['2008 in music', 'Burna Boy', 1217641857, 107605],
+            ['Semaphore (programming)', 'Nihonjoe', 1144850850, 7616],
+            ["Wake Forest Demon Deacons men's soccer", 'Burna Boy', 1260577388, 26745]
+        ]
+
+        # Basic test
+        assert article_length(5000, sample_metadata) == [['Landseer (dog)', 'Bearcat', 1231438650, 2006], 
+                                                         ['Charles McPherson (musician)', 'Bearcat', 1255183865, 3007], 
+                                                         ['Les Cousins (music club)', 'Mack Johnson', 1187072433, 4926], 
+                                                         ['Spawning (computer gaming)', 'jack johnson', 1176750529, 3413], 
+                                                         ['Texture (music)', 'Bearcat', 1161070178, 3626], 
+                                                         ['Register (music)', 'Pegship', 1082665179, 598], 
+                                                         ['Mode (computer interface)', 'Pegship', 1182732608, 2991], 
+                                                         ['List of video games with time travel', 'Mack Johnson', 1234110556, 2344]]
+
+        # exact length match
+        assert article_length(61644, sample_metadata) == [['Landseer (dog)', 'Bearcat', 1231438650, 2006],
+                                                        ['Charles McPherson (musician)', 'Bearcat', 1255183865, 3007],
+                                                        ['Comparison of programming languages (basic instructions)', 'RussBot', 1238781354, 61644],
+                                                        ['Les Cousins (music club)', 'Mack Johnson', 1187072433, 4926],
+                                                        ['Paul Carr (musician)', 'Burna Boy', 1254142018, 5716],
+                                                        ['Spawning (computer gaming)', 'jack johnson', 1176750529, 3413],
+                                                        ['Sean Delaney (musician)', 'Nihonjoe', 1204328174, 5638],
+                                                        ['Tony Kaye (musician)', 'Burna Boy', 1141489894, 8419],
+                                                        ['Danja (musician)', 'RussBot', 1257155543, 6925],
+                                                        ['Ruby (programming language)', 'Bearcat', 1193928035, 30284],
+                                                        ['Texture (music)', 'Bearcat', 1161070178, 3626],
+                                                        ['List of computer role-playing games', 'Mr Jake', 1179441080, 43088],
+                                                        ['Register (music)', 'Pegship', 1082665179, 598],
+                                                        ['Mode (computer interface)', 'Pegship', 1182732608, 2991],
+                                                        ['2007 in music', 'Bearcat', 1169248845, 45652],
+                                                        ['List of video games with time travel', 'Mack Johnson', 1234110556, 2344],
+                                                        ['Semaphore (programming)', 'Nihonjoe', 1144850850, 7616],
+                                                        ["Wake Forest Demon Deacons men's soccer", 'Burna Boy', 1260577388, 26745]]
+        
+        # Edge Case Test: Empty Metadata List
+        assert article_length(1000, []) == []
+
+        # entering zero
+        assert article_length(0, sample_metadata) == []
+
+        # length exceeds upper bound so the entire metadata is returned
+        assert article_length(200000, sample_metadata) == sample_metadata
+
+        # Test with max_length smaller Than smallest article
+        assert article_length(500, sample_metadata) == []
+
+        # only one article with length <= max_length
+        single_article_metadata = [['Test Article', 'Author', 1234567890, 1234]]
+        assert article_length(1234, single_article_metadata) == single_article_metadata
+
+        # no articles satisfying the conditions
+        assert article_length(1000, single_article_metadata) == []
+
 
     # FUNCTION 4 UNIT TEST
     def test_most_recent_article(self):
