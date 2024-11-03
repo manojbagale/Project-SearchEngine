@@ -318,35 +318,6 @@ class TestSearch(TestCase):
 
 
     # FUNCTION 4 INTEGRATION TEST
-    # #ADVANCED OPTION 2: INTEGRATION TEST
-    # @patch('builtins.input')
-    # def test_advanced_option_2(self, input_mock):
-    #     '''
-    #     college as keyword provided and advanced response 2
-    #     '''
-    #     keyword = 'college'
-    #     advanced_option = 2
-    #     advanced_response = 2
-       
-    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Rock music', 'Mack Johnson', 1258069053, 119498], ['Fisk University', 'RussBot', 1263393671, 16246]]\n"
-        
-    #     self.assertEqual(output, expected)
-    
-    #     '''
-    #     empty keyword provided and advance reponse 2
-    #     '''
-    #     keyword = ''
-    #     advanced_option = 2
-    #     advanced_response = 2
-       
-    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
-        
-    #     self.assertEqual(output, expected)
-
-
-    # ADVACNED OTPION 3: INTEGRATION TEST
     @patch('builtins.input')
     def test_most_recent_article_test(self, input_mock):
         # Test Normal Case
