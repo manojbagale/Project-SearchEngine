@@ -18,6 +18,7 @@ class TestSearch(TestCase):
         ]
         self.assertEqual(search('soccer'), expected_search_soccer_results)
 
+
     # FUNCTION 4 UNIT TEST
     def test_most_recent_article(self):
         
@@ -54,11 +55,6 @@ class TestSearch(TestCase):
 
 
 
-
-        
-
-
-
     #####################
     # INTEGRATION TESTS #
     #####################
@@ -73,6 +69,7 @@ class TestSearch(TestCase):
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]\n"
 
         self.assertEqual(output, expected)
+
 
     # FUNCTION 4 INTEGRATION TEST
     @patch('builtins.input')
