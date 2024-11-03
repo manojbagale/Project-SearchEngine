@@ -42,9 +42,7 @@ def search(keyword):
 # Returns: list of article metadata from given metadata with articles not
 #   exceeding max_length number of characters
 def article_length(max_length, metadata):
-
     output = []
-
     for data in metadata:
         if data[3] <= max_length:
             output.append(data)
