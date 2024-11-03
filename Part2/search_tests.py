@@ -235,7 +235,7 @@ class TestSearch(TestCase):
     
     # FUNCTION 2 INTEGRATION TEST
     @patch('builtins.input')
-    def test_example_integration_test(self, input_mock):
+    def test_number_of_unique_authors(self, input_mock):
 
         #testing for normal cases
         keyword = 'mLs'
@@ -243,7 +243,7 @@ class TestSearch(TestCase):
         advanced_response = 4
 
         output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]\n"
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Will Johnson (soccer)', 'Burna Boy', 1218489712, 3562]]\n"
 
         self.assertEqual(output, expected)
 
@@ -252,7 +252,7 @@ class TestSearch(TestCase):
         advanced_response = 7
 
         output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['Spain national beach soccer team', 'jack johnson', 1233458894, 1526], ['Steven Cohen (soccer)', 'Mack Johnson', 1237669593, 2117]]\n"
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: [['List of Canadian musicians', 'Jack Johnson', 1181623340, 21023], ['Lights (musician)', 'Burna Boy', 1213914297, 5898], ['Old-time music', 'Nihonjoe', 1124771619, 12755]]\n"
 
         self.assertEqual(output, expected)
 
@@ -273,6 +273,46 @@ class TestSearch(TestCase):
 
         output = get_print(input_mock, [keyword, advanced_option, advanced_response])
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+
+        self.assertEqual(output, expected)
+
+    
+    # FUNCTION 3 INTEGRATION TEST
+    @patch('builtins.input')
+    def test_most_recent_article(self, input_mock):
+
+        #article exists
+        keyword = 'MuSIC'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: ['Rock music', 'Mack Johnson', 1258069053, 119498]\n"
+
+        self.assertEqual(output, expected)
+
+        keyword = 'canaDA'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: ['Will Johnson (soccer)', 'Burna Boy', 1218489712, 3562]\n"
+
+        self.assertEqual(output, expected)
+
+        #article does not exist
+        keyword = 'messi'
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nNo articles found\n"
+
+        self.assertEqual(output, expected)
+
+        # empty keyword
+        keyword = ''
+        advanced_option = 3
+
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nNo articles found\n"
 
         self.assertEqual(output, expected)
 
