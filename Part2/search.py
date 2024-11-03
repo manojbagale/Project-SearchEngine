@@ -84,7 +84,7 @@ def most_recent_article(metadata):
     
     latest = metadata[0]
     for article_row in metadata:
-        if article_row[2] > metadata:
+        if article_row[2] > latest[2]:
             latest = article_row
     return latest
 
