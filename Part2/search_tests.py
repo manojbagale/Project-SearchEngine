@@ -435,6 +435,17 @@ class TestSearch(TestCase):
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: [['Rock music', 'Mack Johnson', 1258069053, 119498], ['Fisk University', 'RussBot', 1263393671, 16246]]\n"
         
         self.assertEqual(output, expected)
+        
+                
+        '''
+        lee as the keyword
+        '''
+        keyword = 'lee'
+        advanced_option = 7
+       
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: [['List of Canadian musicians', 'Jack Johnson', 1181623340, 21023]]\n"
+        
 
 # Write tests above this line. Do not remove.
 if __name__ == "__main__":
