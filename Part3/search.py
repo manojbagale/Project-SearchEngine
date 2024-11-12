@@ -77,7 +77,10 @@ def title_to_info(metadata):
 # Return: list of titles with articles containing the keyword, case-sensitive
 #         or an empty list if none are found
 def search(keyword, keyword_to_titles):
-    pass
+    if keyword in keyword_to_titles:
+        return keyword_to_titles[keyword]
+    else:
+        return []
 
 
 '''
