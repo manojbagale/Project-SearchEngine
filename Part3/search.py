@@ -22,7 +22,16 @@ import time
 #   'another_keyword': ['article title 2', 'article title 3']
 # }
 def keyword_to_titles(metadata):
-    pass
+    result = dict()
+    for i in range(len(metadata)):
+        for keyword in metadata[i][4]:
+            if  not keyword in result:
+                result[keyword] = [metadata[i][0]]
+            else:
+                result[keyword].append(metadata[i][0])
+    return result
+
+# print(keyword_to_titles(article_metadata()))
 
 
 # 2) 
@@ -44,7 +53,16 @@ def keyword_to_titles(metadata):
 #   'article title 2': {'author': 'another author', 'timestamp': 9876543210, 'length': 85761}
 # }
 def title_to_info(metadata):
-    pass
+    result = dict()
+    for i in range(len(metadata)):
+        result[metadata[i][0]] = {
+            'author': metadata[i][1],
+            'timestamp': metadata[i][2],
+            'length': metadata[i][3]
+        }
+    return result
+
+print(title_to_info(article_metadata()))
 
 
 # 3) 
