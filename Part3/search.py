@@ -24,11 +24,11 @@ import time
 def keyword_to_titles(metadata):
     result = dict()
     for i in range(len(metadata)):
-        for keyword in metadata[i][4]:
-            if  not keyword in result:
-                result[keyword] = [metadata[i][0]]
-            else:
-                result[keyword].append(metadata[i][0])
+        for keyword in metadata[i][4]: # metadata[i][4] -> keywords
+            if  not keyword in result: # if the keyword doesn't already exist as a key in result then add it
+                result[keyword] = [metadata[i][0]] # metadata[i][0] -> article title
+            else: 
+                result[keyword].append(metadata[i][0]) # if the keyword exists as a key in result then append to it
     return result
 
 # print(keyword_to_titles(article_metadata()))
@@ -62,7 +62,7 @@ def title_to_info(metadata):
         }
     return result
 
-print(title_to_info(article_metadata()))
+# print(title_to_info(article_metadata()))
 
 
 # 3) 
