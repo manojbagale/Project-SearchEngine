@@ -199,9 +199,17 @@ class TestSearch(TestCase):
 
         # Empty fav author in empty metadata
         self.assertEqual(favorite_author('',[]), False)
-        
-        
+
     # FUNCTION 6 UNIT TEST
+    def test_title_and_author(self):
+        search_college_results = [['Rock music', 'Mack Johnson', 1258069053, 119498], ['Fisk University', 'RussBot', 1263393671, 16246]]
+        search_football_results = [['Georgia Bulldogs football', 'Burna Boy', 1166567889, 43718]]
+        
+        self.assertEqual(title_and_author(search_college_results), [('Rock music', 'Mack Johnson'), ('Fisk University', 'RussBot')])
+        self.assertEqual(title_and_author(search_football_results), [('Georgia Bulldogs football', 'Burna Boy')])
+        self.assertEqual(title_and_author([]), [])        
+        
+    # FUNCTION 7 UNIT TEST
     def test_refine_search(self):
         search_results = [
             ['Rock music', 'Mack Johnson', 1258069053, 119498], 
