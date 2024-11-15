@@ -99,8 +99,11 @@ Functions 4-8 are called after searching for a list of articles containing the u
 # Return: list of article titles from given titles for articles that do not
 #         exceed max_length number of characters
 def article_length(max_length, article_titles, title_to_info):
-    pass
-
+    result = []
+    for title in article_titles:
+        if title_to_info[title]['length'] <= max_length:
+            result.append(title)
+    return result
 
 # 5) 
 #
@@ -119,9 +122,23 @@ def article_length(max_length, article_titles, title_to_info):
 #   'author': ['article title', 'article title 2'],
 #   'another author': ['article title 3']
 # }
-def key_by_author(article_titles, title_to_info):
-    pass
 
+# for reference: 
+# Example return value for title_to_info:
+# {
+#   'article title': {'author': 'some author', 'timestamp': 1234567890, 'length': 2491}
+#   'article title 2': {'author': 'another author', 'timestamp': 9876543210, 'length': 85761}
+# }
+
+def key_by_author(article_titles, title_to_info):            
+    result = {}
+    for title in article_titles:
+        author = title_to_info[title]['author']
+        if author in result:
+            result[author].append(title)
+        else:
+            result[author] = [title]
+    return result
 
 # 6) 
 #

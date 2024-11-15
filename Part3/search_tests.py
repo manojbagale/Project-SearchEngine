@@ -125,11 +125,149 @@ class TestSearch(TestCase):
         self.assertEqual(search("Health", keyword_to_titles2), ["Article y"])
         self.assertEqual(search("health-care", keyword_to_titles2), ["Article z"])
 
+    #UNIT TEST 4: Article Length
+    def test_search(self):
+        # '''creating sample examples to work on'''
+        article_titles =  ['List of Canadian musicians', 'Edogawa, Tokyo']
+        title_to_info = {
+            'List of Canadian musicians' : {
+                'author': 'Jack Ma',
+                'timestamp': 1181623340,
+                'length': 21023
+            }, 
+            'Edogawa, Tokyo' : {
+                'author': 'jack johnson',
+                'timestamp': 1222607041,
+                'length': 4526
+            }
+        }
+        self.assertEqual(article_length(2000, article_titles, title_to_info), [])
+        self.assertEqual(article_length(100000, [], {}), [])
+        self.assertEqual(article_length(25000, article_titles, title_to_info), ['List of Canadian musicians', 'Edogawa, Tokyo'])
+        self.assertEqual(article_length(4527, article_titles, title_to_info), ['Edogawa, Tokyo'])
+
+    #UNIT TEST 5: Key by Author
+    def test_key_by_author(self):
+        # '''creating sample examples to work on'''
+        title_to_info_1 = {
+            'List of Canadian musicians' : {
+                'author': 'Jack Ma',
+                'timestamp': 1181623340,
+                'length': 21023
+            }, 
+
+            'Edogawa, Tokyo' : {
+                'author': 'jack johnson',
+                'timestamp': 1222607041,
+                'length': 4526
+            }
+        } 
+        expected_output_1 = {
+           'Jack Ma': ['List of Canadian musicians'],
+           'jack johnson': ['Edogawa, Tokyo'] 
+        }
+
+        title_to_info_2 = {
+            'title1' : {
+                'author': 'heyman',
+                'timestamp': '2000',
+                'length': 'length1'
+            },
+            'title2' :{
+                'author': 'damnman',
+                'timestamp': 'stamp2',
+                'length': 'length2'
+            },
+            'title3' : {
+                'author': 'heyman',
+                'timestamp': 'stamp3',
+                'length': 'length3'
+            }
+        }
+        expected_output_2 = {
+            'heyman' : ['title1', 'title3'],
+            'damnman': ['title2']
+        }
+
+        self.assertEqual(key_by_author([], {}), {})
+        self.assertEqual(key_by_author(['List of Canadian musicians', 'Edogawa, Tokyo'], title_to_info_1), expected_output_1)
+        self.assertEqual(key_by_author(['title1', 'title2', 'title3'], title_to_info_2), expected_output_2)
 
 
     #####################
     # INTEGRATION TESTS #
     #####################
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    '''
+    Integration tests for "advanced options". Remember: there are 6 total advanced options. 
+    '''
+    
+    #ADVANCED OPTION: 1
+    @patch('builtins.input')
+    def test_advanced_option_1(self, input_mock):
+        '''
+        "heyman" as the keyword and 4000 the advanced reponse. 
+        '''
+        keyword = 'heyman'
+        advanced_option = 1
+        advanced_response = 4000
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+
+        self.assertEqual(output, expected)
+        
+        '''
+        "music" as the keyword and 6000 the advanced reponse. 
+        '''
+        keyword = 'music'
+        advanced_option = 1
+        advanced_response = 6000
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['French pop music', 'Kevin Cadogan', 'Lights (musician)', 'Tim Arnold (musician)', 'Joe Becker (musician)', 'List of gospel musicians', 'Texture (music)']\n"
+
+        self.assertEqual(output, expected)
+
+    #ADVANCED OPTION: 2
+    @patch('builtins.input')
+    def test_advanced_option_2(self, input_mock):
+        '''
+        "music" as the keyword
+        '''
+        keyword = 'indian'
+        advanced_option = 2
+
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: {'Burna Boy': ['Indian classical music']}\n"
+
+        self.assertEqual(output, expected)
+        
+        '''
+        "football" as the keyword
+        '''
+        keyword = 'football'
+        advanced_option = 2
+
+        output = get_print(input_mock, [keyword, advanced_option])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: {'Burna Boy': ['Georgia Bulldogs football']}\n"
+
+        self.assertEqual(output, expected)
+
 
     # @patch('builtins.input')
     # def test_example_integration_test(self, input_mock):
