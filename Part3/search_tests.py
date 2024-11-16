@@ -126,7 +126,7 @@ class TestSearch(TestCase):
         self.assertEqual(search("health-care", keyword_to_titles2), ["Article z"])
 
     #UNIT TEST 4: Article Length
-    def test_search(self):
+    def test_article_length(self):
         # '''creating sample examples to work on'''
         article_titles =  ['List of Canadian musicians', 'Edogawa, Tokyo']
         title_to_info = {
