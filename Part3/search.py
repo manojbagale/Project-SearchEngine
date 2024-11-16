@@ -153,8 +153,20 @@ def key_by_author(article_titles, title_to_info):
 # Return: list of article titles from the initial search written by the author
 #         or an empty list if none.
 def filter_to_author(author, article_titles, title_to_info):
-    pass
-
+    titles_and_author = key_by_author(article_titles, title_to_info)
+    if author in titles_and_author:
+        return titles_and_author[author]
+    else:
+        return []
+    
+    #OR
+    
+    # by_author = []
+    # for title, descrip in title_to_info.items():
+    #     if title in article_titles and descrip["author"] == author:
+    #         by_author.append(title)
+            
+    # return by_author
 
 # 7) 
 #
