@@ -47,7 +47,6 @@ In this section, we’ll search through a 2D list of article metadata to find ar
 
 ## Project[pt.3] Overview
 
-## Overview
 **Project 2: Part 3** builds on Part 2 by implementing additional search functionalities. This includes adding preprocessing functions to transform a 2D list of article metadata into a dictionary, simplifying searches. Refer to the "Project Description" for details about the task and data formatting.
 
 ---
