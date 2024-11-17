@@ -92,7 +92,7 @@ class TestSearch(TestCase):
         expected_output3 = {}
         self.assertEqual(title_to_info(metadata3), expected_output3)
     
-    #UNIT TEST 3: search
+    # UNIT TEST 3: search
     def test_search(self):
         # Basic Test Case: keyword is present in the dictionary
         keyword_to_titles1 = {
@@ -125,7 +125,7 @@ class TestSearch(TestCase):
         self.assertEqual(search("Health", keyword_to_titles2), ["Article y"])
         self.assertEqual(search("health-care", keyword_to_titles2), ["Article z"])
 
-    #UNIT TEST 4: Article Length
+    # UNIT TEST 4: Article Length
     def test_article_length(self):
         # '''creating sample examples to work on'''
         article_titles =  ['List of Canadian musicians', 'Edogawa, Tokyo']
@@ -146,7 +146,7 @@ class TestSearch(TestCase):
         self.assertEqual(article_length(25000, article_titles, title_to_info), ['List of Canadian musicians', 'Edogawa, Tokyo'])
         self.assertEqual(article_length(4527, article_titles, title_to_info), ['Edogawa, Tokyo'])
 
-    #UNIT TEST 5: Key by Author
+    # UNIT TEST 5: Key by Author
     def test_key_by_author(self):
         # '''creating sample examples to work on'''
         title_to_info_1 = {
@@ -194,7 +194,7 @@ class TestSearch(TestCase):
         self.assertEqual(key_by_author(['title1', 'title2', 'title3'], title_to_info_2), expected_output_2)
         
         
-    #UNIT TEST 6: Filter to Author
+    # UNIT TEST 6: Filter to Author
     def test_filter_to_author(self):
         article_titles =  ['List of Canadian musician', 'Edogawa, Tokyo']
         title_to_info = {
@@ -247,9 +247,9 @@ class TestSearch(TestCase):
     Integration tests for "advanced options". Remember: there are 6 total advanced options. 
     '''
     
-    #ADVANCED OPTION: 1
+    # INTEGRATION TEST: ADVANCED OPTION 1: Article length
     @patch('builtins.input')
-    def test_advanced_option_1(self, input_mock):
+    def test_advanced_option_1_article_length(self, input_mock):
         '''
         "heyman" as the keyword and 4000 the advanced reponse. 
         '''
@@ -274,9 +274,9 @@ class TestSearch(TestCase):
 
         self.assertEqual(output, expected)
 
-    #ADVANCED OPTION: 2
+    # INTEGRATION TEST: ADVANCED OPTION 2: Key by author
     @patch('builtins.input')
-    def test_advanced_option_2(self, input_mock):
+    def test_advanced_option_2_key_by_author(self, input_mock):
         '''
         "music" as the keyword
         '''
@@ -299,9 +299,9 @@ class TestSearch(TestCase):
 
         self.assertEqual(output, expected)
 
-    #ADVANCED OPTION: 3
+    # INTEGRATION TEST: ADVANCED OPTION 3: Filter to author
     @patch('builtins.input')
-    def test_advanced_option_3(self, input_mock):
+    def test_advanced_option_3_filter_to_author(self, input_mock):
         '''
         "music" as the keyword and man as the advanced response
         '''
@@ -341,12 +341,19 @@ class TestSearch(TestCase):
     # INEGRATION TEST : ADVANCED OPTION 6: None  
     @patch('builtins.input')
     def test_advanced_option_6_none(self, input_mock):
+        # Check for keyword dog
         keyword = 'dog'
         advanced_option = 6
 
         output = get_print(input_mock, [keyword, advanced_option, ])
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: ['Black dog (ghost)', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', 'Sun dog']\n"
+        self.assertEqual(output, expected)
 
+        # Check for keyword hello : Not found
+        keyword = 'hello'
+
+        output = get_print(input_mock, [keyword, advanced_option, ])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nNo articles found\n"
         self.assertEqual(output, expected)
         
 
