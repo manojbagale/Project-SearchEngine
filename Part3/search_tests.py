@@ -285,7 +285,53 @@ class TestSearch(TestCase):
 
     # UNIT TEST 8: Testing articles_from_year
     def test_articles_from_year(self):
-        pass
+        # Sample article data (article titles and their metadata)
+        article_metadata = [
+            ['Article 1', 'Author A', 1577836800, 5000, ['sports']],  # 2019-12-31
+            ['Article 2', 'Author B', 1609459200, 4500, ['football']],  # 2020-12-31
+            ['Article 3', 'Author C', 1612137600, 3000, ['technology']],  # 2021-01-31
+            ['Article 4', 'Author D', 1596240000, 2000, ['gaming']],  # 2020-07-31
+            ['Article 5', 'Author E', 1583020800, 4000, ['outdoor']],  # 2020-02-29
+            ['Article 6', 'Author F', 1585699200, 6000, ['sports']],  # 2020-03-31
+            ['Article 7', 'Author G', 1606790400, 3500, ['technology']],  # 2020-11-30
+            ['Article 8', 'Author H', 1614556800, 2500, ['gaming']],  # 2021-02-28
+        ]
+
+
+        # Dictionary to map article title to its metadata (author, timestamp, length)
+        title_to_info = {
+            'Article 1': {'author': 'Author A', 'timestamp': 1577836800, 'length': 5000},
+            'Article 2': {'author': 'Author B', 'timestamp': 1609459200, 'length': 4500},
+            'Article 3': {'author': 'Author C', 'timestamp': 1612137600, 'length': 3000},
+            'Article 4': {'author': 'Author D', 'timestamp': 1596240000, 'length': 2000},
+            'Article 5': {'author': 'Author E', 'timestamp': 1583020800, 'length': 4000},
+            'Article 6': {'author': 'Author F', 'timestamp': 1585699200, 'length': 6000},
+            'Article 7': {'author': 'Author G', 'timestamp': 1606790400, 'length': 3500},
+            'Article 8': {'author': 'Author H', 'timestamp': 1614556800, 'length': 2500},
+        }
+
+        # List of article titles
+        article_titles = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5', 'Article 6', 'Article 7', 'Article 8']
+
+        #Nomal cases where some of the article_titles match the year and get removed
+        
+        result = articles_from_year(2020, article_titles, title_to_info)
+        self.assertEqual(result, ['Article 2', 'Article 4', 'Article 5', 'Article 6', 'Article 7'])
+
+        result = articles_from_year(2019, article_titles, title_to_info)
+        self.assertEqual(result, ['Article 1'])
+
+        result = articles_from_year(2021, article_titles, title_to_info)
+        self.assertEqual(result, ['Article 3', 'Article 8'])
+
+        result = articles_from_year(2030, article_titles, title_to_info) #non existent date
+        self.assertEqual(result, [])
+
+        result = articles_from_year(2020, [], title_to_info) #no articles to start with (empty list)
+        self.assertEqual(result, [])
+
+
+
 
     #####################
     # INTEGRATION TESTS #
