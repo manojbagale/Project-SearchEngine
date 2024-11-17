@@ -445,6 +445,137 @@ class TestSearch(TestCase):
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['Lights (musician)', 'Indian classical music', 'Tony Kaye (musician)', '2008 in music']\n"
 
         self.assertEqual(output, expected)
+
+    
+    # INTEGRATION TEST: ADVANCED OPTION 4: Filter out keyword
+    @patch('builtins.input')
+    def test_advanced_option_4_filter_out_keyword(self, input_mock):
+        '''
+        "music" as the keyword and man as the advanced response
+        '''
+        keyword = 'music'
+        advanced_option = 4
+        advanced_response = 'man'
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', 'Kevin Cadogan', '2009 in music', 'Rock music', 'Lights (musician)', 'Tim Arnold (musician)', 'Old-time music', 'Arabic music', 'Joe Becker (musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'Steve Perry (musician)', 'David Gray (musician)', 'Alex Turner (musician)', 'List of gospel musicians', 'Indian classical music', '1996 in music', 'Traditional Thai musical instruments', '2006 in music', 'Tony Kaye (musician)', 'Texture (music)', '2007 in music', '2008 in music']\n"
+
+        self.assertEqual(output, expected)
+        
+        '''
+        soccer as the keyword and Jack as the advanced response
+        '''
+        keyword = 'soccer'
+        advanced_option = 4
+        advanced_response = 'Jack'
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['Spain national beach soccer team', 'Will Johnson (soccer)', 'Steven Cohen (soccer)']\n"
+
+        self.assertEqual(output, expected)
+        
+        '''
+        "music" as the keyword and Burna Boy as the advanced response
+        Burna Boy is not in the keywords of any of the titles
+        '''
+        keyword = 'music'
+        advanced_option = 4
+        advanced_response = 'Burna Boy'
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['List of Canadian musicians', 'French pop music', 'Noise (music)', '1922 in music', '1986 in music', 'Kevin Cadogan', '2009 in music', 'Rock music', 'Lights (musician)', 'Tim Arnold (musician)', 'Old-time music', 'Arabic music', 'Joe Becker (musician)', 'Richard Wright (musician)', 'Voice classification in non-classical music', '1936 in music', '1962 in country music', 'List of dystopian music, TV programs, and games', 'Steve Perry (musician)', 'David Gray (musician)', 'Alex Turner (musician)', 'List of gospel musicians', 'Indian classical music', '1996 in music', 'Traditional Thai musical instruments', '2006 in music', 'Tony Kaye (musician)', 'Texture (music)', '2007 in music', '2008 in music']\n"
+
+        self.assertEqual(output, expected)
+
+        '''
+        "Hotel California" as the keyword and "nonexistent" as the advanced response 
+        Hotel California itself will return an empty list so additional search wont even matter
+        '''
+        keyword = 'Hotel California'
+        advanced_option = 4
+        advanced_response = "nonexistent"
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+
+        self.assertEqual(output, expected)
+
+
+
+    # INTEGRATION TEST: ADVANCED OPTION 5: Articles from year
+    @patch('builtins.input')
+    def test_advanced_option_5_filter_by_year(self, input_mock):
+        '''
+        "soccer" as the keyword and 2008 as the advanced response
+        this will effectively filter out the other years
+        '''
+        keyword = 'soccer'
+        advanced_option = 5
+        advanced_response = 2008
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['Will Johnson (soccer)']\n"
+
+        self.assertEqual(output, expected)
+
+
+        '''
+        "soccer" as the keyword and 1130 as the advanced response
+        This wont filter out anything and so wont return anything
+        '''
+        keyword = 'soccer'
+        advanced_option = 5
+        advanced_response = 1130
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+
+        self.assertEqual(output, expected)
+
+
+        '''
+        "canada" as the keyword and 2008 as the advanced response
+        this also filters out the keywords
+        '''
+        keyword = 'canada'
+        advanced_option = 5
+        advanced_response = 2008
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['Lights (musician)', 'Will Johnson (soccer)']\n"
+
+        self.assertEqual(output, expected)
+
+
+        '''
+        "music" as the keyword and 2005 as the advanced response
+        this also filters out the keywords
+        '''
+        keyword = 'music'
+        advanced_option = 5
+        advanced_response = 2005
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['Old-time music']\n"
+
+        self.assertEqual(output, expected)
+
+
+        '''
+        "comedy" as the keyword and 2004 as the advanced response
+        "comedy" already doesn't return any articles so futher filtering will also return out nothing
+        '''
+        keyword = 'comedy'
+        advanced_option = 5
+        advanced_response = 2004
+
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nNo articles found\n"
+
+        self.assertEqual(output, expected)
+        
+        
+
         
     # INEGRATION TEST : ADVANCED OPTION 6: None  
     @patch('builtins.input')
