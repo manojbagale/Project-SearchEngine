@@ -183,6 +183,10 @@ def filter_to_author(author, article_titles, title_to_info):
 #         new keyword
 def filter_out(keyword, article_titles, keyword_to_titles):
     out = [] #Initializing the output list
+
+    if keyword not in keyword_to_titles:
+        return article_titles
+
     new_keyword_articles = keyword_to_titles[keyword] #article titles corresponding to the new keyword
 
     for title in article_titles:
