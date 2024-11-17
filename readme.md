@@ -45,8 +45,28 @@ In this section, we’ll search through a 2D list of article metadata to find ar
     4. Article character count (int)
     5. Keywords related to the content (list of strings)
 
-Example row:
-```plaintext
-['Spongebob - the legacy', 'Mr Jake', 1172208041, 5569, ['Spongebob', 'cartoon', 'pineapple', 'tv', 'sponge', 'nickelodeon', 'legacy']]
+## Project[pt.3] Overview
+
+## Overview
+**Project 2: Part 3** builds on Part 2 by implementing additional search functionalities. This includes adding preprocessing functions to transform a 2D list of article metadata into a dictionary, simplifying searches. Refer to the "Project Description" for details about the task and data formatting.
+
+---
+
+## Starter Code
+### Files Overview:
+- **`search.py`**: Add search functionality.
+- **`wiki.py`** (Do Not Modify): 
+  - Provides raw article metadata and helper functions:
+    - `article_metadata()`: Returns a complete list of article metadata.
+    - `ask_search()`: Prompts for a basic search keyword.
+    - `ask_advanced_search()`: Prompts for advanced search options.
+- **`search_tests.py`**: Add unit and integration tests.
+- **`search_tests_helper.py`** (Do Not Modify): 
+  - Helper functions for integration tests:
+    - `print_basic()`: Displays basic search prompt.
+    - `print_advanced()`: Displays advanced search prompt.
+    - `print_advanced_option()`: Displays advanced search options prompt.
+    - `get_print()`: Simulates running the entire search program.
+
 
    
