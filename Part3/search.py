@@ -182,7 +182,15 @@ def filter_to_author(author, article_titles, title_to_info):
 # Return: list of articles from the basic search that do not include the
 #         new keyword
 def filter_out(keyword, article_titles, keyword_to_titles):
-    pass
+    out = [] #Initializing the output list
+    new_keyword_articles = keyword_to_titles[keyword] #article titles corresponding to the new keyword
+
+    for title in article_titles:
+        if title not in new_keyword_articles: #checking if the basic search title is not in the new keyword's article titles, and include that in the output, else exclude the title
+            out.append(title)
+    
+    return out
+
 
 
 # 8) 
@@ -198,7 +206,19 @@ def filter_out(keyword, article_titles, keyword_to_titles):
 # Return: list of article titles from the basic search that were published
 #         during the provided year.
 def articles_from_year(year, article_titles, title_to_info):
-    pass
+    out = [] #Initializing the output list
+
+    for title in article_titles: #collecting every title
+            
+            timestamp = title_to_info[title]['timestamp'] #collecting timestamps of every article from the title_to_info dict
+            
+            dt = datetime.date.fromtimestamp(timestamp) #converting the epoch time to calender time
+            timestamp_year = str(dt.year) #extracting just the year
+
+            if timestamp_year == str(year): #comparing timestamp year with input year
+                out.append(title)
+
+    return out
 
 
 # Prints out articles based on searched keyword and advanced options
