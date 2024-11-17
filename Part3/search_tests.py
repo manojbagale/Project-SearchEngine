@@ -338,7 +338,16 @@ class TestSearch(TestCase):
 
         self.assertEqual(output, expected)
         
-        
+    # INEGRATION TEST : ADVANCED OPTION 6: None  
+    @patch('builtins.input')
+    def test_advanced_option_6_none(self, input_mock):
+        keyword = 'dog'
+        advanced_option = 6
+
+        output = get_print(input_mock, [keyword, advanced_option, ])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: ['Black dog (ghost)', 'Mexican dog-faced bat', 'Dalmatian (dog)', 'Guide dog', 'Sun dog']\n"
+
+        self.assertEqual(output, expected)
         
 
     # @patch('builtins.input')
