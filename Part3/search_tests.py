@@ -223,7 +223,69 @@ class TestSearch(TestCase):
         self.assertEqual(filter_to_author('Hi', [], {}), [])
         self.assertEqual(filter_to_author(author2, article_titles, title_to_info), expected_output2)
 
+    
+    # UNIT TEST 7: Testing Filter out
+    def test_filter_out(self):
+        # Sample data to simulate the metadata and the result of keyword_to_titles
+        article_metadata = [
+            ['Article 1', 'Author A', 1234567890, 5000, ['soccer', 'sports']],
+            ['Article 2', 'Author B', 1234567900, 4500, ['soccer', 'football']],
+            ['Article 3', 'Author C', 1234567910, 2000, ['sports', 'outdoor']],
+            ['Article 4', 'Author A', 1234567920, 6000, ['gaming', 'esports']],
+            ['Article 5', 'Author B', 1234567930, 4000, ['technology', 'gaming']]
+        ]
 
+        # Simulating the output of `keyword_to_titles`
+        keyword_to_titles = {
+            'soccer': ['Article 1', 'Article 2'],
+            'sports': ['Article 1', 'Article 3'],
+            'gaming': ['Article 4', 'Article 5'],
+        }
+        
+        #Basic search has articles that do not contain the second keyword.
+        article_titles = ['Article 1', 'Article 2', 'Article 3']
+        result = filter_out('gaming', article_titles, keyword_to_titles)
+        assert result == ['Article 1', 'Article 2', 'Article 3']
+
+        article_titles = ['Article 1', 'Article 3']
+        result = filter_out('gaming', article_titles, keyword_to_titles)
+        assert result == ['Article 1', 'Article 3']
+
+        article_titles = ['Article 1', 'Article 3', 'Article 2']
+        result = filter_out('basketball', article_titles, keyword_to_titles)
+        assert result == ['Article 1', 'Article 3', 'Article 2']
+
+
+        #All articles contain the second keyword. (e.g., exclude 'gaming')
+        article_titles = ['Article 4', 'Article 5']
+        result = filter_out('gaming', article_titles, keyword_to_titles)
+        assert result == []
+
+        #The second keyword is an empty string, should return the same article list as the basic search.
+        article_titles = ['Article 1', 'Article 3']
+        result = filter_out('', article_titles, keyword_to_titles)
+        assert result == ['Article 1', 'Article 3']
+
+        #Basic search has all articles from the keyword list, and we are filtering out a present keyword ('sports').
+        article_titles = ['Article 1', 'Article 2', 'Article 3']
+        result = filter_out('sports', article_titles, keyword_to_titles)
+        assert result == ['Article 2']
+
+        #case sensitive test with Soccer instead of soccer
+        article_titles = ['Article 1', 'Article 2']
+        result = filter_out('Soccer', article_titles, keyword_to_titles)
+        assert result == ['Article 1', 'Article 2']
+
+
+        #Edge case with an empty list of articles from the basic search.
+        article_titles = []
+        result = filter_out('gaming', article_titles, keyword_to_titles)
+        assert result == []
+
+
+    # UNIT TEST 8: Testing articles_from_year
+    def test_articles_from_year(self):
+        pass
 
     #####################
     # INTEGRATION TESTS #
