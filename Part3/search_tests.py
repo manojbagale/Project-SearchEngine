@@ -336,21 +336,7 @@ class TestSearch(TestCase):
     #####################
     # INTEGRATION TESTS #
     #####################
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      
     '''
     Integration tests for "advanced options". Remember: there are 6 total advanced options. 
     '''
@@ -406,6 +392,7 @@ class TestSearch(TestCase):
         expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + "\nHere are your articles: {'Burna Boy': ['Georgia Bulldogs football']}\n"
 
         self.assertEqual(output, expected)
+
 
     # INTEGRATION TEST: ADVANCED OPTION 3: Filter to author
     @patch('builtins.input')
@@ -596,16 +583,16 @@ class TestSearch(TestCase):
         self.assertEqual(output, expected)
         
 
-    # @patch('builtins.input')
-    # def test_example_integration_test(self, input_mock):
-    #     keyword = 'soccer'
-    #     advanced_option = 5
-    #     advanced_response = 2009
+    @patch('builtins.input')
+    def test_example_integration_test(self, input_mock):
+        keyword = 'soccer'
+        advanced_option = 5
+        advanced_response = 2009
 
-    #     output = get_print(input_mock, [keyword, advanced_option, advanced_response])
-    #     expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['Spain national beach soccer team', 'Steven Cohen (soccer)']\n"
+        output = get_print(input_mock, [keyword, advanced_option, advanced_response])
+        expected = print_basic() + keyword + '\n' + print_advanced() + str(advanced_option) + '\n' + print_advanced_option(advanced_option) + str(advanced_response) + "\n\nHere are your articles: ['Spain national beach soccer team', 'Steven Cohen (soccer)']\n"
 
-    #     self.assertEqual(output, expected)
+        self.assertEqual(output, expected)
 
 # Write tests above this line. Do not remove.
 if __name__ == "__main__":
