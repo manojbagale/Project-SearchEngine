@@ -1,6 +1,37 @@
 
 ![SimpliSearch](https://github.com/user-attachments/assets/1a5b11f5-feb3-4209-8dea-d84d264a9f26)
 
+## How to Make Your Repository Private
+
+If you're working on this project and want to keep your repository private (especially for academic work), here's how to change your repository visibility on GitHub:
+
+### Method 1: During Repository Creation
+1. When creating a new repository on GitHub, look for the "Repository template" section
+2. Select **Private** instead of **Public** before clicking "Create repository"
+
+### Method 2: Change Existing Repository to Private
+1. Go to your repository on GitHub.com
+2. Click on the **Settings** tab (located at the top right of your repository page)
+3. Scroll down to the **Danger Zone** section at the bottom of the Settings page
+4. Click on **Change repository visibility**
+5. Select **Make private**
+6. Type your repository name to confirm the change
+7. Click **I understand, change repository visibility**
+
+### Important Notes:
+- **Free GitHub accounts** can have unlimited private repositories
+- Private repositories are only visible to you and collaborators you specifically invite
+- If your repository was public before, it will no longer appear in search results or be accessible to others
+- You can always change it back to public later using the same steps
+- **For academic work**: Check with your instructor about their policy on private vs public repositories
+
+### Adding Collaborators to Private Repositories:
+1. Go to repository **Settings** → **Manage access**
+2. Click **Invite a collaborator**
+3. Enter their GitHub username or email
+4. Choose their permission level (Read, Write, or Admin)
+5. Click **Add [username] to this repository**
+
 ## Project Description
 
 A search engine takes a given search phrase or word and finds pages on the internet that are relevant, ranks the pages, and then displays the pages in the order of ranking.
